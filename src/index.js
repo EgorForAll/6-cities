@@ -7,3 +7,5 @@ ReactDOM.render(
     <App appartments={appartments}/>,
     document.querySelector(`#root`)
 );
+
+

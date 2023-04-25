@@ -1,8 +1,8 @@
 import React from "react";
+import propTypes from 'prop-types';
 import CardOffer from "../card-offer/card-offer";
 
-const App = (props) => {
-  const {appartments} = props;
+const App = ({appartments}) => {
 
   return (
     <div className="page page--gray page--main">
@@ -97,6 +97,17 @@ const App = (props) => {
       </main>
     </div>
   );
+};
+
+App.propTypes = {
+  appartments: propTypes.arrayOf(
+      propTypes.shape({
+        id: propTypes.number.isRequired,
+        price: propTypes.number.isRequired,
+        img: propTypes.string.isRequired,
+        type: propTypes.string.isRequired,
+        description: propTypes.string.isRequired
+      }))
 };
 
 export default App;

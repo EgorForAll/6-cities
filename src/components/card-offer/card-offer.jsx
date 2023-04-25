@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 
-const CardOffer = (props) => {
-  const {offer} = props;
+const CardOffer = ({offer}) => {
 
   return (
     <article key={offer.id} className="cities__place-card place-card">
@@ -40,6 +39,16 @@ const CardOffer = (props) => {
       </div>
     </article>
   );
+};
+
+CardOffer.propTypes = {
+  offer: propTypes.shape({
+    id: propTypes.number.isRequired,
+    price: propTypes.number.isRequired,
+    img: propTypes.string.isRequired,
+    type: propTypes.string.isRequired,
+    description: propTypes.string.isRequired
+  })
 };
 
 
