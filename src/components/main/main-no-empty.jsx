@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import CardOffer from "../card-offer/card-offer";
 
 const MainNoEmprty = ({appartments}) => {
+
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
@@ -30,12 +31,13 @@ const MainNoEmprty = ({appartments}) => {
 };
 
 MainNoEmprty.propTypes = {
-  appartments: propTypes.shape({
+  appartments: propTypes.arrayOf(
+    propTypes.shape({
     id: propTypes.number.isRequired,
     price: propTypes.number.isRequired,
     img: propTypes.string.isRequired,
     type: propTypes.string.isRequired,
     description: propTypes.string.isRequired
-  })
+  }))
 };
 export default MainNoEmprty;
