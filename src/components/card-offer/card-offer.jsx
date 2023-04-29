@@ -41,15 +41,5 @@ const CardOffer = ({offer}) => {
   );
 };
 
-CardOffer.propTypes = {
-  offer: propTypes.shape({
-    id: propTypes.number.isRequired,
-    price: propTypes.number.isRequired,
-    img: propTypes.string.isRequired,
-    type: propTypes.string.isRequired,
-    description: propTypes.string.isRequired
-  })
-};
-
 
 export default CardOffer;

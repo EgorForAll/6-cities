@@ -1,4 +1,4 @@
-export const appartments = [
+export const offers = [
   {
     id: 1,
     price: 120,

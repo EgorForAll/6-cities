@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {appartments} from './mock/appartments';
+import {offers} from './mock/offers';
 
 ReactDOM.render(
-    <App appartments={appartments}/>,
+    <App offers={offers}/>,
     document.querySelector(`#root`)
 );
 

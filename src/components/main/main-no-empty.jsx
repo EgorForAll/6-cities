@@ -1,8 +1,7 @@
 import React from "react";
-import propTypes from "prop-types";
 import CardOffer from "../card-offer/card-offer";
 
-const MainNoEmprty = ({appartments}) => {
+const MainNoEmprty = ({offers}) => {
 
   return (
     <main className="page__main page__main--index">
@@ -47,7 +46,7 @@ const MainNoEmprty = ({appartments}) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{appartments.length} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -64,7 +63,7 @@ const MainNoEmprty = ({appartments}) => {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {appartments.map((item) => <CardOffer key={item.id} offer={item} />)}
+              {offers.map((item) => <CardOffer key={item.id} offer={item} />)}
             </div>
           </section>
           <div className="cities__right-section">
@@ -76,14 +75,5 @@ const MainNoEmprty = ({appartments}) => {
   );
 };
 
-MainNoEmprty.propTypes = {
-  appartments: propTypes.arrayOf(
-      propTypes.shape({
-        id: propTypes.number.isRequired,
-        price: propTypes.number.isRequired,
-        img: propTypes.string.isRequired,
-        type: propTypes.string.isRequired,
-        description: propTypes.string.isRequired
-      }))
-};
+
 export default MainNoEmprty;
