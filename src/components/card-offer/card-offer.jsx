@@ -1,10 +1,11 @@
-import React from "react";
-import propTypes from "prop-types";
+import React, { useState } from "react";
 
 const CardOffer = ({offer}) => {
 
+  const [active, setActive] = useState(false);
+
   return (
-    <article key={offer.id} className="cities__place-card place-card">
+    <article key={offer.id} className="cities__place-card place-card" onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
       <div className="place-card__mark" style={{display: `none`}}>
         <span>Premium</span>
       </div>
