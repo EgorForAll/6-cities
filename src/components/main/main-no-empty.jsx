@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../ui/sort-menu";
+import { SORT_MENU } from "../../const/const";
 
 const MainNoEmprty = ({offers}) => {
 
   const [sortMenu, openMenu] = useState(false);
+  const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular)
 
   return (
     <main className="page__main page__main--index">
@@ -53,12 +55,12 @@ const MainNoEmprty = ({offers}) => {
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0" onClick={() => openMenu(!sortMenu)}>
-                Popular
+                {sortMenuValue}
                 <svg className="places__sorting-arrow" width="7" height="4">
                   <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
               </span>
-              {sortMenu ? <SortMenu/> : null}
+              {sortMenu ? <SortMenu sortMenuValue = {sortMenuValue} setSortMenuValue={setSortMenuValue}/> : null}
             </form>
             <div className="cities__places-list places__list tabs__content">
               {offers.map((item) => <CardOffer key={item.id} offer={item} />)}
