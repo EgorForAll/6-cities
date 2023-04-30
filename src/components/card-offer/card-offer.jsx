@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import PremiumMark from "../ui/premium-mark";
+import BookmarkSvg from "../ui/bookmark-svg";
 
 const CardOffer = ({offer}) => {
-
   const [active, setActive] = useState(false);
 
   return (
     <article key={offer.id} className="cities__place-card place-card" onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
-      <div className="place-card__mark" style={{display: `none`}}>
-        <span>Premium</span>
-      </div>
+      {offer.isPremium ? <PremiumMark /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image" />
@@ -21,10 +20,7 @@ const CardOffer = ({offer}) => {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <BookmarkSvg offer={offer}/>
           </button>
         </div>
         <div className="place-card__rating rating">

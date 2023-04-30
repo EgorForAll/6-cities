@@ -4,7 +4,7 @@ import SortMenu from "../ui/sort-menu";
 import { SORT_MENU } from "../../const/const";
 
 const MainNoEmprty = ({offers}) => {
-
+  console.log(offers)
   const [sortMenu, openMenu] = useState(false);
   const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular)
 
