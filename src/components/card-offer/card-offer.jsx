@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PremiumMark from "../ui/premium-mark";
 import BookmarkSvg from "../ui/bookmark-svg";
+import {offerValid} from "../../prop-types/offer";
 
 const CardOffer = ({offer}) => {
   const [active, setActive] = useState(false);
@@ -38,5 +39,5 @@ const CardOffer = ({offer}) => {
   );
 };
 
-
+CardOffer.propTypes = offerValid;
 export default CardOffer;

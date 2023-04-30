@@ -12,7 +12,9 @@ const App = (props) => {
       <BrowserRouter>
         <Switch>
           <Route path="/login:id?" exact component={LoginPage}/>
-          <Route path="/favorites" exact component={FavoritesPage}/>
+          <Route path="/favorites" exact>
+            <FavoritesPage {...props}/>
+          </Route>
           <Route path="/property" exact component={PropertyPage}/>
           <Route path="/" exact>
             <Main {...props}/>

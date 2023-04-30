@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../ui/sort-menu";
-import { SORT_MENU } from "../../const/const";
+import {SORT_MENU} from "../../const/const";
+import {offerValid} from "../../prop-types/offer";
 
-const MainNoEmprty = ({offers}) => {
-  console.log(offers)
+const MainNoEmpty = ({offers}) => {
   const [sortMenu, openMenu] = useState(false);
-  const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular)
+  const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular);
 
   return (
     <main className="page__main page__main--index">
@@ -75,5 +75,5 @@ const MainNoEmprty = ({offers}) => {
   );
 };
 
-
-export default MainNoEmprty;
+MainNoEmpty.propTypes = offerValid;
+export default MainNoEmpty;
