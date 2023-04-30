@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import PremiumMark from "../ui/premium-mark";
 import BookmarkSvg from "../ui/bookmark-svg";
 import {offerValid} from "../../prop-types/offer";
+import {Link} from "react-router-dom/cjs/react-router-dom.min";
 
 const CardOffer = ({offer}) => {
   const [active, setActive] = useState(false);
@@ -31,7 +32,7 @@ const CardOffer = ({offer}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#"></a>
+          <Link to={'/property' + `${offer.id}`}>{offer.description}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

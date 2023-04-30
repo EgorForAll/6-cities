@@ -2,7 +2,7 @@ export const offers = [
   {
     id: 1,
     location: `Amsterdam`,
-    price: 120,
+    price: 125,
     img: `img/apartment-01.jpg`,
     isPremium: true,
     isFavorite: true,

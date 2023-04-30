@@ -15,7 +15,9 @@ const App = (props) => {
           <Route path="/favorites" exact>
             <FavoritesPage {...props}/>
           </Route>
-          <Route path="/property" exact component={PropertyPage}/>
+          <Route path="/property:id" exact>
+            <PropertyPage {...props} />
+          </Route>
           <Route path="/" exact>
             <Main {...props}/>
           </Route>
