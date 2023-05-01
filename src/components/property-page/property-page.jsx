@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import Header from "../header/header";
-import PremiumMark from "../ui/premium-mark";
+import {countRating} from "../../utils/utils";
 
 const PropertyPage = ({offers}) => {
   const currentLocation = window.location.pathname;
   const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(9)))
-
+  const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
+    <li className="property__inside-item" key={arrayOfGoods.indexOf(item)}>
+      {item}
+    </li>
+    )
   return (
     <div className="page">
       <Header />
@@ -53,20 +57,20 @@ const PropertyPage = ({offers}) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `80%`}}></span>
+                  <span style={{width: `${countRating(clickedOffer.rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{clickedOffer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {clickedOffer.type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {clickedOffer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  Max {clickedOffer.max_adults} adults
                 </li>
               </ul>
               <div className="property__price">
@@ -76,36 +80,7 @@ const PropertyPage = ({offers}) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  <li className="property__inside-item">
-                    Wi-Fi
-                  </li>
-                  <li className="property__inside-item">
-                    Washing machine
-                  </li>
-                  <li className="property__inside-item">
-                    Towels
-                  </li>
-                  <li className="property__inside-item">
-                    Heating
-                  </li>
-                  <li className="property__inside-item">
-                    Coffee machine
-                  </li>
-                  <li className="property__inside-item">
-                    Baby seat
-                  </li>
-                  <li className="property__inside-item">
-                    Kitchen
-                  </li>
-                  <li className="property__inside-item">
-                    Dishwasher
-                  </li>
-                  <li className="property__inside-item">
-                    Cabel TV
-                  </li>
-                  <li className="property__inside-item">
-                    Fridge
-                  </li>
+                  {clickedOffer.goods.length > 0 ? createGoodItem(clickedOffer.goods) : null}
                 </ul>
               </div>
               <div className="property__host">
@@ -115,10 +90,10 @@ const PropertyPage = ({offers}) => {
                     <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {clickedOffer.host.name}
                   </span>
                   <span className="property__user-status">
-                    Pro
+                    {clickedOffer.host.is_pro ? `Pro` : null}
                   </span>
                 </div>
                 <div className="property__description">

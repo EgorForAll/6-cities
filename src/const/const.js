@@ -9,3 +9,5 @@ export const CITIES = {
   AMSTERDAM: `Amsterdam`,
   COLOGNE: `Cologne`
 };
+
+export const CITIES_LIST = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];

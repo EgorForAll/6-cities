@@ -3,6 +3,7 @@ import PremiumMark from "../ui/premium-mark";
 import BookmarkSvg from "../ui/bookmark-svg";
 import {offerValid} from "../../prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
+import {countRating} from "../../utils/utils";
 
 const CardOffer = ({offer}) => {
   const [active, setActive] = useState(false);
@@ -27,7 +28,7 @@ const CardOffer = ({offer}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `50%`}}></span>
+            <span style={{width: `${countRating(offer.rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

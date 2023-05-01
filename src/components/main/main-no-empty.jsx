@@ -3,6 +3,8 @@ import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../ui/sort-menu";
 import {SORT_MENU} from "../../const/const";
 import {offerValid} from "../../prop-types/offer";
+import {CITIES_LIST} from "../../const/const";
+import Tabs from "../ui/tabs";
 
 const MainNoEmpty = ({offers}) => {
   const [sortMenu, openMenu] = useState(false);
@@ -14,36 +16,7 @@ const MainNoEmpty = ({offers}) => {
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
+            {CITIES_LIST.length > 0 ? <Tabs arrayOfCities={CITIES_LIST}/> : null}
           </ul>
         </section>
       </div>

@@ -7,7 +7,7 @@ import {offerValid} from "../../prop-types/offer";
 const FavoritesPage = (props) => {
   const {offers} = props;
   const renderFavoriteList = (items, location) => items.map((item) => {
-    if (item.isFavorite && item.location === location) {
+    if (item.isFavorite && item.city.name === location) {
       return <CardFavorite key={item.id} offer={item}/>;
     }
   });
