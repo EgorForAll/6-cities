@@ -5,21 +5,20 @@ import LoginPage from "../pages/login-page/login";
 import FavoritesPage from "../pages/favorites-page/favorites-page";
 import PropertyPage from "../pages/property-page/property-page";
 import PageNotFound from "../pages/page-not-found/page-not-found";
-import history from "../../history/history";
 
 const App = (props) => {
   return (
     <>
-      <BrowserRouter history={history}>
+      <BrowserRouter>
         <Switch>
           <Route path="/login:id?" exact component={LoginPage}/>
           <Route path="/favorites" exact>
             <FavoritesPage {...props}/>
           </Route>
-          <Route path="/property:id" exact>
+          <Route path="/offer/:id" exact>
             <PropertyPage {...props} />
           </Route>
-          <Route path="/main-page-:city" render={() => <Main {...props}/>} exact/>
+          <Route path="/" render={() => <Main {...props}/>} exact/>
           <Route path="*" render={() => <PageNotFound />}/>
         </Switch>
       </BrowserRouter>

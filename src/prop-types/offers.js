@@ -13,7 +13,7 @@ export const offersValid = {
           name: propTypes.string.isRequired
         }),
         price: propTypes.number.isRequired,
-        img: propTypes.string.isRequired,
+        images: propTypes.array.isRequired,
         isPremium: propTypes.bool.isRequired,
         isFavorite: propTypes.bool.isRequired,
         type: propTypes.string.isRequired,

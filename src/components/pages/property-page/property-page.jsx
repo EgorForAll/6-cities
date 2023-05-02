@@ -18,7 +18,7 @@ const PropertyPage = (props) => {
   const {offers} = props;
   const {comments} = props;
   const currentLocation = window.location.pathname;
-  const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(9)))
+  const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)))
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
     <li className="property__inside-item" key={arrayOfGoods.indexOf(item)}>
       {item}

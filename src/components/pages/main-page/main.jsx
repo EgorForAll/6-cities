@@ -5,13 +5,12 @@ import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
 import {offersValid} from "/src/prop-types/offers";
 
 const Main = (props) => {
-
   const {offers} = props;
 
   return (
     <div className="page page--gray page--main">
       <Header/>
-      {offers.length > 0 ? <MainNoEmpty {...props}/> : <MainEmpty/>}
+      {offers.length > 0 ? <MainNoEmpty offers={offers}/> : <MainEmpty/>}
     </div>
   );
 };
