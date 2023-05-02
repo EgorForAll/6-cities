@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../header/header";
-import CardFavorite from "../card-favorite/card-favorite";
-import {CITIES} from "../../const/const";
-import {offerValid} from "../../prop-types/offer";
+import Header from "/src/components/layout/header/header";
+import CardFavorite from "/src/components/blocks/card-favorite/card-favorite";
+import {CITIES} from "/src/const/const";
+import {offerValid} from "/src/prop-types/offer";
 
 const FavoritesPage = (props) => {
   const {offers} = props;

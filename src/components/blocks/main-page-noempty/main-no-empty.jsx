@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
-import {SORT_MENU} from "../../../const/const";
-import {offerValid} from "../../../prop-types/offer";
-import {CITIES_LIST} from "../../../const/const";
-import {capitalizeFirstLetter} from "../../../utils/utils";
-import Tabs from "../../ui/tabs";
+import {SORT_MENU, CITIES_LIST} from "/src/const/const";
+import {offerValid} from "/src/prop-types/offer";
+import {capitalizeFirstLetter} from "/src/utils/utils";
+import Tabs from "/src/components/ui/tabs";
 
 const MainNoEmpty = ({offers}) => {
   const [sortMenu, openMenu] = useState(false);

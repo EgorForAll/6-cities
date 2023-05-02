@@ -1,9 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Header from "../header/header";
-import {countRating} from "../../utils/utils";
+import Header from "/src/components/layout/header/header";
+import PropertyText from "../../ui/property-text";
+import {countRating} from "/src/utils/utils";
+import Review from "../../blocks/review/review";
 
-const PropertyPage = ({offers}) => {
+const PropertyPage = (props) => {
+  const {offers} = props;
+  const {comments} = props;
   const currentLocation = window.location.pathname;
   const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(9)))
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
@@ -46,7 +50,7 @@ const PropertyPage = ({offers}) => {
               </div> : null}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {clickedOffer.description}
+                  {clickedOffer.title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -97,39 +101,13 @@ const PropertyPage = ({offers}) => {
                   </span>
                 </div>
                 <div className="property__description">
-                  <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                  </p>
+                  <PropertyText text={clickedOffer.description}/>
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                 <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
-                      </div>
-                      <span className="reviews__user-name">
-                        Max
-                      </span>
-                    </div>
-                    <div className="reviews__info">
-                      <div className="reviews__rating rating">
-                        <div className="reviews__stars rating__stars">
-                          <span style={{width: `80%`}}></span>
-                          <span className="visually-hidden">Rating</span>
-                        </div>
-                      </div>
-                      <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                      </p>
-                      <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                    </div>
-                  </li>
+                  {comments.length > 0 ? comments.map((item) => <Review key={item.id} review={item}/>) : null}
                 </ul>
                 <form className="reviews__htmlForm htmlForm" action="#" method="post">
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>

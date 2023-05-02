@@ -10,6 +10,7 @@ export const offers = [
       name: `Amsterdam`
     },
     price: 125,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     goods: [`Heating`, `Cable TV`, `Washing machine`, `Coffee machine`],
     img: `img/apartment-01.jpg`,
     isPremium: true,
@@ -24,7 +25,7 @@ export const offers = [
       name: `Angelina`
     },
     type: `Appartment`,
-    description: `Beautiful & luxurious apartment at great location`
+    title: `Beautiful & luxurious apartment at great location`
   },
   {
     id: 2,
@@ -37,6 +38,7 @@ export const offers = [
       name: `Amsterdam`
     },
     price: 80,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     img: `img/room.jpg`,
     isPremium: false,
@@ -51,7 +53,7 @@ export const offers = [
       name: `John`
     },
     type: `Private room`,
-    description: `Wood and stone place`
+    title: `Wood and stone place`
   },
   {
     id: 3,
@@ -61,9 +63,10 @@ export const offers = [
         longitude: 4.845168,
         zoom: 10
       },
-      name: `Amsterdam`
+      name: `Paris`
     },
     price: 132,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     goods: [`Heating`, `Kitchen`, `Coffee machine`, `Dishwasher`],
     img: `img/apartment-02.jpg`,
     isPremium: false,
@@ -78,7 +81,7 @@ export const offers = [
       name: `Riahanna`
     },
     type: `Appartment`,
-    description: `Nice, cozy, warm big bed apartment`,
+    title: `Nice, cozy, warm big bed apartment`,
   },
   {
     id: 4,
@@ -91,6 +94,7 @@ export const offers = [
       name: `Amsterdam`
     },
     price: 80,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     img: `img/room.jpg`,
     isPremium: false,
@@ -105,7 +109,7 @@ export const offers = [
       name: `Natasha`
     },
     type: `Private room`,
-    description: `Wood and stone place`
+    title: `Wood and stone place`
   },
   {
     id: 5,
@@ -118,6 +122,7 @@ export const offers = [
       name: `Cologne`
     },
     price: 180,
+    description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
     img: `img/apartment-small-04.jpg`,
     isPremium: false,
@@ -132,7 +137,7 @@ export const offers = [
       name: `Sasha`
     },
     type: `Appartment`,
-    description: `White castle`
+    title: `White castle`
   }
 ];
 

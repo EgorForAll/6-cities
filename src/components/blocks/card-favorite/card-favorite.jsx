@@ -1,6 +1,7 @@
 import React from "react";
-import BookmarkSvg from "../ui/bookmark-svg";
-import {offersValid} from "../../prop-types/offers";
+import BookmarkSvg from "/src/components/ui/bookmark-svg";
+import {offersValid} from "/src/prop-types/offers";
+import { countRating } from "/src/utils/utils";
 
 const CardFavorite = ({offer}) => {
   return (
@@ -23,7 +24,7 @@ const CardFavorite = ({offer}) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `100%`}}></span>
+            <span style={{width: `${countRating(offer.rating)}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../header/header";
-import MainNoEmpty from "./main-no-empty";
-import MainEmpty from "./main-empty";
+import Header from "/src/components/layout/header/header";
+import MainNoEmpty from "/src/components/blocks/main-page-noempty/main-no-empty";
+import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
 import {offersValid} from "/src/prop-types/offers";
 
 const Main = (props) => {
