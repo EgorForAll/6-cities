@@ -8,7 +8,7 @@ const CardFavorite = ({offer}) => {
     <article className="favorites__card place-card" key={offer.id}>
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={offer.img} width="150" height="110" alt="Place image"/>
+          <img className="place-card__image" src={offer.images[0]} width="150" height="110" alt="Place image"/>
         </a>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -29,7 +29,7 @@ const CardFavorite = ({offer}) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{offer.description}</a>
+          <a href="#">{offer.title}</a>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

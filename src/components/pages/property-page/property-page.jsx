@@ -4,6 +4,7 @@ import Header from "/src/components/layout/header/header";
 import PropertyText from "../../ui/property-text";
 import {countRating} from "/src/utils/utils";
 import Review from "../../blocks/review/review";
+import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 
 const PropertyPage = (props) => {
   const {offers} = props;
@@ -21,26 +22,7 @@ const PropertyPage = (props) => {
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
-            <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
-              </div>
-            </div>
+            <PropertyGallery images={clickedOffer.images}/>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
