@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import Header from "/src/components/layout/header/header";
 import PropertyText from "../../ui/property-text";
@@ -7,6 +7,14 @@ import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 
 const PropertyPage = (props) => {
+  const [state, setState] = useState({value: ``});
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(state.value)
+  }
+  const handleOnChange = (evt) => {
+    setState({value: evt.target.value});
+  }
   const {offers} = props;
   const {comments} = props;
   const currentLocation = window.location.pathname;
@@ -91,7 +99,7 @@ const PropertyPage = (props) => {
                 <ul className="reviews__list">
                   {comments.length > 0 ? comments.map((item) => <Review key={item.id} review={item}/>) : null}
                 </ul>
-                <form className="reviews__htmlForm htmlForm" action="#" method="post">
+                <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-htmlForm htmlForm__rating">
                     <input className="htmlForm__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
@@ -129,7 +137,7 @@ const PropertyPage = (props) => {
                       </svg>
                     </label>
                   </div>
-                  <textarea className="reviews__textarea htmlForm__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+                  <textarea className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
                       To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
