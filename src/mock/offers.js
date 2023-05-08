@@ -3,7 +3,7 @@ export const offers = [
     id: 1,
     city: {
       location: {
-        latitude: 52.370216,
+        latitude: 52.38333,
         longitude: 4.895168,
         zoom: 10
       },

@@ -3,8 +3,9 @@ import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
 import {SORT_MENU, CITIES_LIST} from "/src/const/const";
 import {offerValid} from "/src/prop-types/offer";
-import {capitalizeFirstLetter} from "/src/utils/utils";
 import Tabs from "/src/components/ui/tabs";
+import Map from "../map/map";
+
 
 const MainNoEmpty = ({offers}) => {
   const [selectedCity, setSelectedCity] = useState('Paris');
@@ -42,7 +43,9 @@ const MainNoEmpty = ({offers}) => {
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section id="map" className="cities__map map">
+              <Map city={offers[0].city}/>
+            </section>
           </div>
         </div>
       </div>

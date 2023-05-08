@@ -34,6 +34,6 @@ export const comments = [
       name: `Daniel`
     }
   }
-]
+];
 
 

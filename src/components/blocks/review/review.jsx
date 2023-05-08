@@ -1,5 +1,6 @@
 import React from "react";
-import { countRating } from "../../../utils/utils";
+import {countRating} from "../../../utils/utils";
+import propTypes from "prop-types";
 
 const Review = ({review}) => {
 
@@ -21,12 +22,27 @@ const Review = ({review}) => {
           </div>
         </div>
         <p className="reviews__text">
-         {review.comment}
+          {review.comment}
         </p>
         <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-    </div>
+      </div>
     </li>
   );
+};
+
+Review.propTypes = {
+  review: propTypes.shape({
+    comment: propTypes.string.isRequired,
+    date: propTypes.string.isRequired,
+    id: propTypes.number.isRequired,
+    rating: propTypes.number.isRequired,
+    user: propTypes.shape({
+      avatar_url: propTypes.string.isRequired,
+      id: propTypes.number.isRequired,
+      is_pro: propTypes.bool.isRequired,
+      name: propTypes.string.isRequired
+    })
+  })
 };
 
 export default Review;

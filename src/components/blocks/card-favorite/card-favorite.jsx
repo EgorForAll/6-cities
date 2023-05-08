@@ -1,7 +1,7 @@
 import React from "react";
 import BookmarkSvg from "/src/components/ui/bookmark-svg";
 import {offersValid} from "/src/prop-types/offers";
-import { countRating } from "/src/utils/utils";
+import {countRating} from "/src/utils/utils";
 
 const CardFavorite = ({offer}) => {
   return (

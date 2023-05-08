@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 
 const PropertyText = ({text}) => {
 
@@ -9,4 +10,8 @@ const PropertyText = ({text}) => {
   );
 };
 
+
+PropertyText.propTypes = {
+  text: propTypes.string.isRequired
+}
 export default PropertyText;

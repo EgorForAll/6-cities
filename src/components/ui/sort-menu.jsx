@@ -3,7 +3,6 @@ import {SORT_MENU} from "../../const/const";
 import propTypes from "prop-types";
 
 const SortMenu = (props) => {
-  const {sortMenuValue} = props;
   const {setSortMenuValue} = props;
 
   return (
