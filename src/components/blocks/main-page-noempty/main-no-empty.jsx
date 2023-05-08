@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
-import {SORT_MENU, CITIES_LIST} from "/src/const/const";
+import {SORT_MENU, CITIES_LIST, CARD_MODE} from "/src/const/const";
 import {offerValid} from "/src/prop-types/offer";
 import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
@@ -39,7 +39,7 @@ const MainNoEmpty = ({offers}) => {
               {sortMenu ? <SortMenu sortMenuValue = {sortMenuValue} setSortMenuValue={setSortMenuValue}/> : null}
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {selectedCityHotels.map((item) => <CardOffer key={item.id} offer={item}/>)}
+              {selectedCityHotels.map((item) => <CardOffer key={item.id} offer={item} mode={CARD_MODE.MAIN_PAGE}/>)}
             </div>
           </section>
           <div className="cities__right-section">

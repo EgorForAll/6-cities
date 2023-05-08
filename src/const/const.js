@@ -15,5 +15,10 @@ export const LeafletParameters = {
   ATTRIBUTION: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy`
 };
 
+export const CARD_MODE = {
+  MAIN_PAGE: `mainPage`,
+  PROPERTY_PAGE: `propertyPage`
+};
+
 
 export const CITIES_LIST = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];

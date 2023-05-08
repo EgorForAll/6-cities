@@ -4,12 +4,12 @@ import BookmarkSvg from "/src/components/ui/bookmark-svg";
 import {offerValid} from "/src/prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
-
-const CardOffer = ({offer}) => {
+import {CARD_MODE} from "../../../const/const";
+const CardOffer = ({offer, mode}) => {
   const [active, setActive] = useState(false);
 
   return (
-    <article key={offer.id} className="cities__place-card place-card" onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+    <article key={offer.id} className={`${ mode === CARD_MODE.MAIN_PAGE ? `cities__place-card place-card` : `near-places__card place-card`}`}  onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
       {offer.isPremium ? <PremiumMark /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
