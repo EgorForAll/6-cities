@@ -25,6 +25,7 @@ export const comments = [
   },
   {
     comment: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+    date: `2019-05-08T14:13:56.569Z1`,
     id: 3,
     rating: 5,
     user: {

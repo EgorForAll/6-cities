@@ -5,6 +5,7 @@ import PropertyText from "../../ui/property-text";
 import {countRating} from "/src/utils/utils";
 import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
+import Map from "../../blocks/map/map";
 
 const PropertyPage = (props) => {
   const [state, setState] = useState({value: ``});
@@ -17,6 +18,7 @@ const PropertyPage = (props) => {
   }
   const {offers} = props;
   const {comments} = props;
+  const nearOffers = offers.slice(0, 3);
   const currentLocation = window.location.pathname;
   const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)))
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
@@ -148,7 +150,11 @@ const PropertyPage = (props) => {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <div style={{width:`1144px`, height:`100%`, margin: `0 auto`}}>
+              <Map city={clickedOffer.city} points={nearOffers}/>
+            </div>
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">

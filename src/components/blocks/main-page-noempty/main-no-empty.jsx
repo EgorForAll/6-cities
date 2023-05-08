@@ -43,9 +43,9 @@ const MainNoEmpty = ({offers}) => {
             </div>
           </section>
           <div className="cities__right-section">
-            <section id="map" className="cities__map map">
-              <Map city={offers[0].city} points={selectedCityHotels}/>
-            </section>
+          <section className="cities__map map">
+            <Map city={offers[0].city} points={selectedCityHotels}/>
+          </section>
           </div>
         </div>
       </div>

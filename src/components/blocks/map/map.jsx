@@ -52,7 +52,7 @@ const Map = ({city, points}) => {
   }, [points]);
 
   return (
-    <div id="map" ref={mapRef}></div>
+    <div id="map" style={{height: '100%'}} ref={mapRef}></div>
   );
 };
 
