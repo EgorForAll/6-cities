@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import propTypes from "prop-types";
 
 
-const Map = ({city}) => {
+const Map = ({city, points}) => {
   const mapRef = useRef();
 
   useEffect(() => {
@@ -16,46 +16,40 @@ const Map = ({city}) => {
       },
       zoom: city.location.zoom
     });
+    return () => {
+      mapRef.current.remove();
+    }
+  }, [])
+
+  useEffect(() => {
 
     leaflet.tileLayer(LeafletParameters.TILE_LAYER, {
       attribution: LeafletParameters.ATTRIBUTION
     }).addTo(mapRef.current);
 
-    // для первого задания
-    const customIcon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+    const markerGroup = leaflet.layerGroup().addTo(mapRef.current);
+
+    points.forEach((point) => {
+      const cityPoint = point.city;
+      const customIcon = leaflet.icon({
+        iconUrl: 'img/pin.svg',
+        iconSize: [30, 30]
+      })
+
+      leaflet.marker({
+        lat: cityPoint.location.latitude,
+        lng: cityPoint.location.longitude
+      },
+      {
+        icon: customIcon
+      }
+      ).addTo(markerGroup).bindPopup(cityPoint.name);
     });
 
-    leaflet.marker({
-      lat: city.location.latitude,
-      lng: city.location.longitude
-    },
-    {
-      icon: customIcon
+    return () => {
+      markerGroup.clearLayers();
     }
-    ).addTo(mapRef.current).bindPopup(city.name);
-
-    // points.forEach((point) => {
-    //   const customIcon = leaflet.icon({
-    //     iconUrl: 'img/pin.svg',
-    //     iconSize: [30, 30]
-    //   })
-
-    //   leaflet.marker({
-    //     lat: point.lat,
-    //     lng: point.lng
-    //   },
-    //   {
-    //     icon: customIcon
-    //   }
-    //   ).addTo(mapRef).bindPopup(point.title)
-
-    //   return () => {
-    //     mapRef.current.remove();
-    //   }
-    // });
-  }, []);
+  }, [points]);
 
   return (
     <div id="map" ref={mapRef}></div>
