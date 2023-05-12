@@ -1,15 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 import PremiumMark from "/src/components/ui/premium-mark";
 import BookmarkSvg from "/src/components/ui/bookmark-svg";
+import {connect} from "react-redux";
 import {offerValid} from "/src/prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
 import {CARD_MODE} from "../../../const/const";
-const CardOffer = ({offer, mode}) => {
-  const [active, setActive] = useState(false);
+import {ActionCreator} from "../../../store/actions";
+const CardOffer = (props) => {
+  const {offer} = props;
+  const {mode} = props;
+  const {onFocusCity} = props;
+  const {onUnfocusCity} = props;
+  const {onSetActivePoint} = props;
 
   return (
-    <article key={offer.id} className={`${ mode === CARD_MODE.MAIN_PAGE ? `cities__place-card place-card` : `near-places__card place-card`}`}  onMouseEnter={() => setActive(true)} onMouseLeave={() => setActive(false)}>
+    <article key={offer.id} className={`${ mode === CARD_MODE.MAIN_PAGE ? `cities__place-card place-card` : `near-places__card place-card`}`}  onMouseEnter={() => onFocusCity(offer)} onMouseLeave={() => onUnfocusCity(offer)}>
       {offer.isPremium ? <PremiumMark /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
@@ -42,4 +48,17 @@ const CardOffer = ({offer, mode}) => {
 };
 
 CardOffer.propTypes = offerValid;
-export default CardOffer;
+
+const mapDispatchToProps = (dispatch) => ({
+  onFocusCity(point) {
+    dispatch(ActionCreator.focusCity(point))
+  },
+  onUnfocusCity() {
+    dispatch(ActionCreator.unfocusCity())
+  }
+});
+
+
+export  {CardOffer};
+
+export default connect(null, mapDispatchToProps)(CardOffer)

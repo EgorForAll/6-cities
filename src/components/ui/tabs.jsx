@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
-import { connect } from "react-redux";
-import { ActionCreator } from "../../store/actions";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/actions";
 
 const Tabs = (props) => {
   const {arrayOfCities} = props;
-  const {onToggleCity} = props
+  const {onToggleCity} = props;
   const selectedCity = props.chosen_city;
   return arrayOfCities.map((item) => (
     <li className="locations__item" key={arrayOfCities.indexOf(item)}>
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onToggleCity(city) {
-    dispatch(ActionCreator.toggleCity(city))
+    dispatch(ActionCreator.toggleCity(city));
   },
 });
 

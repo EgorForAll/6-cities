@@ -11,10 +11,10 @@ import {reducer} from './store/reducer';
 const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App offers={offers} comments={comments}/>
-  </Provider>,
-  document.querySelector(`#root`)
+    <Provider store={store}>
+      <App offers={offers} comments={comments}/>
+    </Provider>,
+    document.querySelector(`#root`)
 );
 
 
