@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {connect} from 'react-redux';
+import {ActionCreator} from "../../../store/actions";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
 import {SORT_MENU, CITIES_LIST, CARD_MODE} from "/src/const/const";
@@ -54,4 +56,6 @@ const MainNoEmpty = ({offers}) => {
 };
 
 MainNoEmpty.propTypes = offerValid;
+
+
 export default MainNoEmpty;

@@ -8,8 +8,10 @@ import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 import {CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
+import {useHistory} from "react-router-dom/cjs/react-router-dom";
 
 const PropertyPage = (props) => {
+  const history = useHistory();
   const [state, setState] = useState({value: ``});
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -23,6 +25,7 @@ const PropertyPage = (props) => {
   const nearOffers = offers.slice(0, 3);
   const currentLocation = window.location.pathname;
   const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)))
+  history.push(`/offer/${clickedOffer.id}`)
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
     <li className="property__inside-item" key={arrayOfGoods.indexOf(item)}>
       {item}
