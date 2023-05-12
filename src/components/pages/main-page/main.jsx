@@ -10,7 +10,7 @@ const Main = (props) => {
   return (
     <div className="page page--gray page--main">
       <Header/>
-      {offers.length > 0 ? <MainNoEmpty offers={offers}/> : <MainEmpty/>}
+      {offers.length > 0 ? <MainNoEmpty /> : <MainEmpty/>}
     </div>
   );
 };

@@ -11,7 +11,6 @@ import Map from "../map/map";
 
 const MainNoEmpty = (props) => {
   const {offers} = props;
-  const {onToggleCity} = props;
   const [sortMenu, openMenu] = useState(false);
   const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular);
   const chosenCity = props.chosen_city
@@ -60,6 +59,7 @@ MainNoEmpty.propTypes = offerValid;
 
 const mapStateToProps = (state) => ({
   chosen_city: state.chosen_city,
+  offers: state.offers
 });
 
 export {MainNoEmpty};
