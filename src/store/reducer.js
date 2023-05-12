@@ -8,7 +8,7 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.INCREMENT_STEP:
+    case ActionType.TOGGLE_CITY:
       return {
         ...state,
         chosen_city: action.city

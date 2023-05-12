@@ -9,19 +9,20 @@ import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
 
 
-const MainNoEmpty = ({offers}) => {
-  const [selectedCity, setSelectedCity] = useState('Paris');
+const MainNoEmpty = (props) => {
+  const {offers} = props;
+  const {onToggleCity} = props;
   const [sortMenu, openMenu] = useState(false);
   const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular);
-  const selectedCityHotels = offers.filter((offer) => offer.city.name === selectedCity);
-
+  const chosenCity = props.chosen_city
+  const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            {CITIES_LIST.length > 0 ? <Tabs arrayOfCities={CITIES_LIST} selectedCity={selectedCity} setSelectedCity={setSelectedCity}/> : null}
+            {CITIES_LIST.length > 0 ? <Tabs arrayOfCities={CITIES_LIST}/> : null}
           </ul>
         </section>
       </div>
@@ -29,7 +30,7 @@ const MainNoEmpty = ({offers}) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{selectedCityHotels.length} places to stay in {selectedCity}</b>
+            <b className="places__found">{selectedCityHotels.length} places to stay in {chosenCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0" onClick={() => openMenu(!sortMenu)}>
@@ -57,5 +58,11 @@ const MainNoEmpty = ({offers}) => {
 
 MainNoEmpty.propTypes = offerValid;
 
+const mapStateToProps = (state) => ({
+  chosen_city: state.chosen_city,
+});
 
-export default MainNoEmpty;
+export {MainNoEmpty};
+
+export default connect(mapStateToProps, null)(MainNoEmpty);
+

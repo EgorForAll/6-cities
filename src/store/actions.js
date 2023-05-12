@@ -3,7 +3,8 @@ export const ActionType = {
 };
 
 export const ActionCreator = {
-  chosenCity: () => ({
+  toggleCity: (parametr) => ({
     type: ActionType.TOGGLE_CITY,
+    city: parametr
   }),
 };
