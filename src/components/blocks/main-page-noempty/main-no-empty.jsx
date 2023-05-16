@@ -12,7 +12,8 @@ import { ActionCreator } from "../../../store/actions";
 const MainNoEmpty = (props) => {
   const {offers} = props;
   const {isOpenSortMenu} = props;
-  const {onChangeSortMenu} = props;
+  const {onChangeSortMenuStatus} = props;
+  const {sortMenuValue} = props;
 
   const chosenCity = props.chosen_city
   const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
@@ -33,7 +34,8 @@ const MainNoEmpty = (props) => {
             <b className="places__found">{selectedCityHotels.length} places to stay in {chosenCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenu()}>
+              <span style={{marginLeft: '5px'}} className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenuStatus()}>
+                {sortMenuValue}
                 <svg className="places__sorting-arrow" width="7" height="4">
                   <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
@@ -60,12 +62,13 @@ MainNoEmpty.propTypes = offerValid;
 const mapStateToProps = (state) => ({
   chosen_city: state.chosen_city,
   offers: state.loaded_offers,
-  isOpenSortMenu: state.sort_menu_open
+  isOpenSortMenu: state.sort_menu_open,
+  sortMenuValue: state.sort_menu_value
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeSortMenu() {
-    dispatch(ActionCreator.onChangeSortMenu())
+  onChangeSortMenuStatus() {
+    dispatch(ActionCreator.onChangeSortMenuStatus())
   }
 })
 

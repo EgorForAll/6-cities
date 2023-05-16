@@ -5,14 +5,11 @@ import { connect } from "react-redux";
 import { ActionCreator } from "../../store/actions";
 
 const SortMenu = (props) => {
-
+  const {sortMenuValue, onChangeSortMenuStatus, onChangeSortMenuValue} = props;
 
   return (
-    <ul className="places__options places__options--custom places__options--opened">
-      <li className="places__option places__option--active" tabIndex="0" onClick={() => {}}>Popular</li>
-      <li className="places__option" tabIndex="2" onClick={() => {}}>Price: high to low</li>
-      <li className="places__option" tabIndex="2" onClick={() => {}}>Price: low to high</li>
-      <li className="places__option" tabIndex="3" onClick={() => {}}>Top rated first</li>
+    <ul className="places__options places__options--custom places__options--opened" onMouseLeave={() => setTimeout(onChangeSortMenuStatus, 500) }>
+      {SORT_MENU.map((item) => <li key={SORT_MENU.indexOf(item)} className={`places__option ${item === sortMenuValue ? `places__option--active` : ''}`} tabIndex={SORT_MENU.indexOf(item)} onClick={() => {onChangeSortMenuValue(item); onChangeSortMenuStatus()}}>{item}</li>)}
     </ul>
   );
 };
@@ -20,12 +17,16 @@ const SortMenu = (props) => {
 SortMenu.propTypes = propTypes.string.isRequired;
 
 const mapStateToProps = (state) => ({
-  isOpen: state.sort_menu_open
+  isOpen: state.sort_menu_open,
+  sortMenuValue: state.sort_menu_value
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSortMenu () {
-    dispatch(ActionCreator.onOpenSortMenu)
+  onChangeSortMenuStatus () {
+    dispatch(ActionCreator.onChangeSortMenuStatus())
+  },
+  onChangeSortMenuValue (value) {
+    dispatch(ActionCreator.onChangeSortMenuValue(value))
   }
 })
 

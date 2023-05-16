@@ -1,9 +1,4 @@
-export const SORT_MENU = {
-  popular: `Popular`,
-  higtToLow: `Price: high to low`,
-  lowToHigh: `Price: low to high`,
-  topRatedFirst: `Top rated first`
-};
+export const SORT_MENU = [ `Popular`, `Price: high to low`, `Price: low to high`,`Top rated first`];
 
 export const CITIES = {
   AMSTERDAM: `Amsterdam`,

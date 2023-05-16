@@ -5,7 +5,8 @@ const initialState = {
   chosen_city: `Paris`,
   loaded_offers: offers,
   active_point: null,
-  sort_menu_open: false
+  sort_menu_open: false,
+  sort_menu_value: 'Popular'
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,6 +32,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         sort_menu_open: !state.sort_menu_open
       };
+    case ActionType.CHANGE_SORT_MENU_VALUE:
+      return {
+        ...state,
+        sort_menu_value: action.newValue
+      }
     default:
       return {
         ...state
