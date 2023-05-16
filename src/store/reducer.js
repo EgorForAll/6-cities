@@ -4,7 +4,8 @@ import {ActionType} from "./actions";
 const initialState = {
   chosen_city: `Paris`,
   loaded_offers: offers,
-  active_point: null
+  active_point: null,
+  sort_menu_open: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -25,7 +26,14 @@ export const reducer = (state = initialState, action) => {
         markerImage: initialState.markerImage,
         active_point: null
       };
+    case ActionType.CHANGE_SORT_MENU_STATUS:
+      return {
+        ...state,
+        sort_menu_open: !state.sort_menu_open
+      };
+    default:
+      return {
+        ...state
+      }
   }
-
-  return state;
 };

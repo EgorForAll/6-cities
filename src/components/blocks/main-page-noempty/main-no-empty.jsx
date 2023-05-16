@@ -6,12 +6,14 @@ import {SORT_MENU, CITIES_LIST, CARD_MODE} from "/src/const/const";
 import {offerValid} from "/src/prop-types/offer";
 import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
+import { ActionCreator } from "../../../store/actions";
 
 
 const MainNoEmpty = (props) => {
   const {offers} = props;
-  const [sortMenu, openMenu] = useState(false);
-  const [sortMenuValue, setSortMenuValue] = useState(SORT_MENU.popular);
+  const {isOpenSortMenu} = props;
+  const {onChangeSortMenu} = props;
+
   const chosenCity = props.chosen_city
   const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
   return (
@@ -31,13 +33,12 @@ const MainNoEmpty = (props) => {
             <b className="places__found">{selectedCityHotels.length} places to stay in {chosenCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex="0" onClick={() => openMenu(!sortMenu)}>
-                {sortMenuValue}
+              <span className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenu()}>
                 <svg className="places__sorting-arrow" width="7" height="4">
                   <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
               </span>
-              {sortMenu ? <SortMenu sortMenuValue = {sortMenuValue} setSortMenuValue={setSortMenuValue}/> : null}
+              {isOpenSortMenu ? <SortMenu /> : null}
             </form>
             <div className="cities__places-list places__list tabs__content">
               {selectedCityHotels.map((item) => <CardOffer key={item.id} offer={item} mode={CARD_MODE.MAIN_PAGE}/>)}
@@ -58,10 +59,17 @@ MainNoEmpty.propTypes = offerValid;
 
 const mapStateToProps = (state) => ({
   chosen_city: state.chosen_city,
-  offers: state.loaded_offers
+  offers: state.loaded_offers,
+  isOpenSortMenu: state.sort_menu_open
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onChangeSortMenu() {
+    dispatch(ActionCreator.onChangeSortMenu())
+  }
+})
 
 export {MainNoEmpty};
 
-export default connect(mapStateToProps, null)(MainNoEmpty);
+export default connect(mapStateToProps, mapDispatchToProps)(MainNoEmpty);
 
