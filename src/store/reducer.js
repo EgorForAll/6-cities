@@ -1,12 +1,13 @@
 import {offers} from "../mock/offers";
 import {ActionType} from "./actions";
+import {SORT_MENU} from "../const/const";
 
 const initialState = {
   chosen_city: `Paris`,
   loaded_offers: offers,
   active_point: null,
   sort_menu_open: false,
-  sort_menu_value: 'Popular'
+  sort_menu_value: SORT_MENU.TOP_RATED
 };
 
 export const reducer = (state = initialState, action) => {

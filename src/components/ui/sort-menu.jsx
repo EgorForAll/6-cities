@@ -9,7 +9,7 @@ const SortMenu = (props) => {
 
   return (
     <ul className="places__options places__options--custom places__options--opened" onMouseLeave={() => setTimeout(onChangeSortMenuStatus, 500) }>
-      {SORT_MENU.map((item) => <li key={SORT_MENU.indexOf(item)} className={`places__option ${item === sortMenuValue ? `places__option--active` : ''}`} tabIndex={SORT_MENU.indexOf(item)} onClick={() => {onChangeSortMenuValue(item); onChangeSortMenuStatus()}}>{item}</li>)}
+      {Object.values(SORT_MENU).map((item) => <li key={Object.values(SORT_MENU).indexOf(item)} className={`places__option ${item === sortMenuValue ? `places__option--active` : ''}`} tabIndex={Object.values(SORT_MENU).indexOf(item)} onClick={() => {onChangeSortMenuValue(item); onChangeSortMenuStatus()}}>{item}</li>)}
     </ul>
   );
 };
@@ -17,7 +17,6 @@ const SortMenu = (props) => {
 SortMenu.propTypes = propTypes.string.isRequired;
 
 const mapStateToProps = (state) => ({
-  isOpen: state.sort_menu_open,
   sortMenuValue: state.sort_menu_value
 });
 

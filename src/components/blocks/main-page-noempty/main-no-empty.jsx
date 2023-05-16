@@ -1,22 +1,37 @@
-import React, {useState} from "react";
+import React from "react";
 import {connect} from 'react-redux';
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
-import {SORT_MENU, CITIES_LIST, CARD_MODE} from "/src/const/const";
+import {CITIES_LIST, CARD_MODE} from "/src/const/const";
 import {offerValid} from "/src/prop-types/offer";
 import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
-import { ActionCreator } from "../../../store/actions";
+import {SORT_MENU} from "../../../const/const";
+import {ActionCreator} from "../../../store/actions";
+import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
 
 
 const MainNoEmpty = (props) => {
-  const {offers} = props;
-  const {isOpenSortMenu} = props;
-  const {onChangeSortMenuStatus} = props;
-  const {sortMenuValue} = props;
-
+  const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus} = props;
   const chosenCity = props.chosen_city
   const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
+
+  const toSortOffers = (sortType) => {
+    switch (sortType) {
+      case SORT_MENU.LOW_TO_HIGH:
+        return selectedCityHotels.sort(expensiveFirst);
+      case SORT_MENU.HIGHT_TO_LOW:
+        return selectedCityHotels.sort(chipFirst);
+      case SORT_MENU.TOP_RATED:
+        return selectedCityHotels.sort(topRatedFirst);
+      default:
+        return selectedCityHotels;
+    }
+  }
+
+  const sortedOffers = toSortOffers(sortMenuValue);
+
+
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -43,7 +58,7 @@ const MainNoEmpty = (props) => {
               {isOpenSortMenu ? <SortMenu /> : null}
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {selectedCityHotels.map((item) => <CardOffer key={item.id} offer={item} mode={CARD_MODE.MAIN_PAGE}/>)}
+              {sortedOffers.map((item) => <CardOffer key={item.id} offer={item} mode={CARD_MODE.MAIN_PAGE}/>)}
             </div>
           </section>
           <div className="cities__right-section">
