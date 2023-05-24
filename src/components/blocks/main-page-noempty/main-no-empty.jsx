@@ -10,7 +10,6 @@ import {SORT_MENU} from "../../../const/const";
 import {ActionCreator} from "../../../store/actions";
 import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
 
-
 const MainNoEmpty = (props) => {
   const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus} = props;
   const chosenCity = props.chosen_city
@@ -30,7 +29,6 @@ const MainNoEmpty = (props) => {
   }
 
   const sortedOffers = toSortOffers(sortMenuValue);
-
 
   return (
     <main className="page__main page__main--index">
@@ -78,7 +76,8 @@ const mapStateToProps = (state) => ({
   chosen_city: state.chosen_city,
   offers: state.loaded_offers,
   isOpenSortMenu: state.sort_menu_open,
-  sortMenuValue: state.sort_menu_value
+  sortMenuValue: state.sort_menu_value,
+  isDataLoaded: state.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

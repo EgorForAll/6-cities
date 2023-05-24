@@ -9,7 +9,6 @@ import propTypes from "prop-types";
 const Map = (props) => {
   const {city} = props;
   const {points} = props;
-  const marker = props.marker;
   const activePoint = props.activePoint;
   const mapRef = useRef();
 
@@ -36,6 +35,7 @@ const Map = (props) => {
 
     points.forEach((point) => {
       const cityPoint = point.city;
+      console.log(cityPoint)
 
       const customIcon = leaflet.icon({
         iconUrl: activePoint !== null && point.id === activePoint.id ? `img/pin-active.svg` : `img/pin.svg`,

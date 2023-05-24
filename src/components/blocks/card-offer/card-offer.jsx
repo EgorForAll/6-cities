@@ -15,7 +15,7 @@ const CardOffer = (props) => {
 
   return (
     <article key={offer.id} className={`${ mode === CARD_MODE.MAIN_PAGE ? `cities__place-card place-card` : `near-places__card place-card`}`}  onMouseEnter={() => onFocusCity(offer)} onMouseLeave={() => onUnfocusCity(offer)}>
-      {offer.isPremium ? <PremiumMark /> : null}
+      {offer.is_premium ? <PremiumMark /> : null}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
           <img className="place-card__image" src={offer.images[0]} width="260" height="200" alt="Place image" />

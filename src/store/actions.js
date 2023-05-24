@@ -2,9 +2,10 @@ export const ActionType = {
   TOGGLE_CITY: `toggle city`,
   FOCUS_CITY: `focus city`,
   UNFOCUS_CITY: `unfocus city`,
-  ACTIVE_POINT: `active point`,
   CHANGE_SORT_MENU_STATUS: `open/close sort menu`,
-  CHANGE_SORT_MENU_VALUE: `change sort menu value`
+  CHANGE_SORT_MENU_VALUE: `change sort menu value`,
+  REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  LOAD_HOTELS: `data/loadHotels`
 };
 
 export const ActionCreator = {
@@ -25,5 +26,13 @@ export const ActionCreator = {
   onChangeSortMenuValue: (value) => ({
     type: ActionType.CHANGE_SORT_MENU_VALUE,
     newValue: value
+  }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
+  }),
+  loadHotels: (hotels) => ({
+    type: ActionType.LOAD_HOTELS,
+    payload: hotels
   })
 };

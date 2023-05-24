@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
 import Header from "/src/components/layout/header/header";
 import CardOffer from "../../blocks/card-offer/card-offer";
 import PropertyText from "../../ui/property-text";
@@ -9,6 +8,7 @@ import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 import {CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
 import {useHistory} from "react-router-dom/cjs/react-router-dom";
+import { connect } from "react-redux";
 
 const PropertyPage = (props) => {
   const history = useHistory();
@@ -24,7 +24,7 @@ const PropertyPage = (props) => {
   const {comments} = props;
   const nearOffers = offers.slice(0, 3);
   const currentLocation = window.location.pathname;
-  const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)))
+  const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)));
   history.push(`/offer/${clickedOffer.id}`)
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
     <li className="property__inside-item" key={arrayOfGoods.indexOf(item)}>
@@ -174,4 +174,10 @@ const PropertyPage = (props) => {
   );
 };
 
-export default PropertyPage;
+const mapStateToProps = (state) => ({
+  offers: state.loaded_offers
+});
+
+export {PropertyPage}
+
+export default connect(mapStateToProps, null)(PropertyPage);

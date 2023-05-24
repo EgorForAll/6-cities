@@ -13,8 +13,8 @@ export const offerValid = {
     }),
     price: propTypes.number.isRequired,
     images: propTypes.array.isRequired,
-    isPremium: propTypes.bool.isRequired,
-    isFavorite: propTypes.bool.isRequired,
+    is_premium: propTypes.bool.isRequired,
+    is_favorite: propTypes.bool.isRequired,
     type: propTypes.string.isRequired,
     description: propTypes.string.isRequired
   })
