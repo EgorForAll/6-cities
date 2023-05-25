@@ -61,7 +61,7 @@ const MainNoEmpty = (props) => {
           </section>
           <div className="cities__right-section">
           <section className="cities__map map">
-            <Map city={offers[0].city} points={selectedCityHotels}/>
+            <Map  points={selectedCityHotels}/>
           </section>
           </div>
         </div>

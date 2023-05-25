@@ -7,10 +7,10 @@ import propTypes from "prop-types";
 
 
 const Map = (props) => {
-  const {city} = props;
   const {points} = props;
   const activePoint = props.activePoint;
   const mapRef = useRef();
+  const city = points[0].city;
 
   useEffect(() => {
     mapRef.current = leaflet.map(`map`, {
@@ -23,7 +23,7 @@ const Map = (props) => {
     return () => {
       mapRef.current.remove();
     }
-  }, []);
+  }, [city]);
 
   useEffect(() => {
 
@@ -34,8 +34,6 @@ const Map = (props) => {
     const markerGroup = leaflet.layerGroup().addTo(mapRef.current);
 
     points.forEach((point) => {
-      const cityPoint = point.city;
-      console.log(cityPoint)
 
       const customIcon = leaflet.icon({
         iconUrl: activePoint !== null && point.id === activePoint.id ? `img/pin-active.svg` : `img/pin.svg`,
@@ -43,13 +41,13 @@ const Map = (props) => {
       });
 
       leaflet.marker({
-        lat: cityPoint.location.latitude,
-        lng: cityPoint.location.longitude
+        lat: point.location.latitude,
+        lng: point.location.longitude
       },
       {
         icon: customIcon
       }
-      ).addTo(markerGroup).bindPopup(cityPoint.name);
+      ).addTo(markerGroup).bindPopup(point.title);
     });
 
     return () => {
