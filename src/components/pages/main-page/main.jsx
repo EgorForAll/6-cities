@@ -5,6 +5,7 @@ import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
 import { connect } from "react-redux";
 import {offersValid} from "/src/prop-types/offers";
 import { fetchHotelsList } from "../../../store/api-actions";
+import Spinner from "../../ui/spinner";
 
 const Main = ({offers, isDataLoaded, onLoadHotels}) => {
 
@@ -13,6 +14,10 @@ const Main = ({offers, isDataLoaded, onLoadHotels}) => {
       onLoadHotels();
     }
   }, [isDataLoaded]);
+
+  if (!isDataLoaded) {
+    return <Spinner />
+  }
 
   return (
     <div className="page page--gray page--main">
@@ -26,7 +31,7 @@ Main.propTypes = offersValid;
 
 const mapStateToProps = (state) => ({
   offers: state.loaded_offers,
-  isDataLoaded: state.isDataLoaded
+  isDataLoaded: state.isOffersLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({

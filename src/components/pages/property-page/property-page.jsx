@@ -1,31 +1,36 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Header from "/src/components/layout/header/header";
 import CardOffer from "../../blocks/card-offer/card-offer";
 import PropertyText from "../../ui/property-text";
+import StarRate, { createStarsArray } from "../../ui/star-rate";
 import {countRating} from "/src/utils/utils";
+import { findOffer } from "../../../utils/utils";
 import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 import {CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
-import {useHistory} from "react-router-dom/cjs/react-router-dom";
 import { connect } from "react-redux";
+import { fetchCommentsList } from "../../../store/api-actions";
 
 const PropertyPage = (props) => {
-  const history = useHistory();
+  const {offers, comments, onLoadComments, isCommentsLoaded} = props;
+  const chosenOfferId = findOffer(offers).id
+  useEffect(() => {
+      onLoadComments(chosenOfferId);
+  }, []);
+
   const [state, setState] = useState({value: ``});
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(state.value)
-  }
+  };
+
   const handleOnChange = (evt) => {
     setState({value: evt.target.value});
-  }
-  const {offers} = props;
-  const {comments} = props;
+  };
+
   const nearOffers = offers.slice(0, 3);
-  const currentLocation = window.location.pathname;
-  const clickedOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)));
-  history.push(`/offer/${clickedOffer.id}`)
+  const currentOffer = findOffer(offers);
   const createGoodItem = (arrayOfGoods) => arrayOfGoods.map((item) =>
     <li className="property__inside-item" key={arrayOfGoods.indexOf(item)}>
       {item}
@@ -37,17 +42,17 @@ const PropertyPage = (props) => {
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
-            <PropertyGallery images={clickedOffer.images}/>
+            <PropertyGallery images={currentOffer.images}/>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {clickedOffer.isPremium ?
+              {currentOffer.isPremium ?
                <div className="property__mark">
                 <span>Premium</span>
               </div> : null}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {clickedOffer.title}
+                  {currentOffer.title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -58,30 +63,30 @@ const PropertyPage = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${countRating(clickedOffer.rating)}%`}}></span>
+                  <span style={{width: `${countRating(currentOffer.rating)}%`}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{clickedOffer.rating}</span>
+                <span className="property__rating-value rating__value">{currentOffer.rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {clickedOffer.type}
+                  {currentOffer.type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {clickedOffer.bedrooms} Bedrooms
+                  {currentOffer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {clickedOffer.max_adults} adults
+                  Max {currentOffer.max_adults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{clickedOffer.price}</b>
+                <b className="property__price-value">&euro;{currentOffer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {clickedOffer.goods.length > 0 ? createGoodItem(clickedOffer.goods) : null}
+                  {currentOffer.goods.length > 0 ? createGoodItem(currentOffer.goods) : null}
                 </ul>
               </div>
               <div className="property__host">
@@ -91,14 +96,14 @@ const PropertyPage = (props) => {
                     <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
                   </div>
                   <span className="property__user-name">
-                    {clickedOffer.host.name}
+                    {currentOffer.host.name}
                   </span>
                   <span className="property__user-status">
-                    {clickedOffer.host.is_pro ? `Pro` : null}
+                    {currentOffer.host.is_pro ? `Pro` : null}
                   </span>
                 </div>
                 <div className="property__description">
-                  <PropertyText text={clickedOffer.description}/>
+                  <PropertyText text={currentOffer.description}/>
                 </div>
               </div>
               <section className="property__reviews reviews">
@@ -109,40 +114,7 @@ const PropertyPage = (props) => {
                 <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-htmlForm htmlForm__rating">
-                    <input className="htmlForm__rating-input visually-hidden" name="rating" value="5" id="5-stars" type="radio"/>
-                    <label htmlFor="5-stars" className="reviews__rating-label htmlForm__rating-label" title="perfect">
-                      <svg className="htmlForm__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="htmlForm__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"/>
-                    <label htmlFor="4-stars" className="reviews__rating-label htmlForm__rating-label" title="good">
-                      <svg className="htmlForm__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="htmlForm__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"/>
-                    <label htmlFor="3-stars" className="reviews__rating-label htmlForm__rating-label" title="not bad">
-                      <svg className="htmlForm__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="htmlForm__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"/>
-                    <label htmlFor="2-stars" className="reviews__rating-label htmlForm__rating-label" title="badly">
-                      <svg className="htmlForm__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
-
-                    <input className="htmlForm__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"/>
-                    <label htmlFor="1-star" className="reviews__rating-label htmlForm__rating-label" title="terribly">
-                      <svg className="htmlForm__star-image" width="37" height="33">
-                        <use xlinkHref="#icon-star"></use>
-                      </svg>
-                    </label>
+                    {createStarsArray().map((item) => item)}
                   </div>
                   <textarea className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
                   <div className="reviews__button-wrapper">
@@ -157,7 +129,7 @@ const PropertyPage = (props) => {
           </div>
           <section className="property__map map">
             <div style={{width:`1144px`, height:`100%`, margin: `0 auto`}}>
-              <Map city={clickedOffer.city} points={nearOffers}/>
+              <Map city={currentOffer.city} points={nearOffers}/>
             </div>
           </section>
         </section>
@@ -175,9 +147,17 @@ const PropertyPage = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.loaded_offers
+  offers: state.loaded_offers,
+  comments: state.loaded_comments,
+  isCommentsLoaded: state.isCommentsLoaded
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadComments(id) {
+    dispatch(fetchCommentsList(id))
+  }
+})
 
 export {PropertyPage}
 
-export default connect(mapStateToProps, null)(PropertyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PropertyPage);

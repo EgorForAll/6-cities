@@ -4,11 +4,13 @@ import {SORT_MENU, AuthorizationStatus} from "../const/const";
 const initialState = {
   chosen_city: `Paris`,
   loaded_offers: [],
+  loaded_comments: [],
   active_point: null,
   sort_menu_open: false,
   sort_menu_value: SORT_MENU.TOP_RATED,
   authorization_status: AuthorizationStatus.NO_AUTH,
-  isDataLoaded: false
+  isOffersLoaded: false,
+  isCommentsLoaded: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -48,7 +50,13 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loaded_offers: action.payload,
-        isDataLoaded: true
+        isOffersLoaded: true
+      };
+    case ActionType.LOAD_COMMENTS:
+      return {
+        ...state,
+        loaded_comments: action.payload,
+        isCommentsLoaded: true
       }
     default:
       return {

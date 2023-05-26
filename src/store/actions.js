@@ -5,7 +5,8 @@ export const ActionType = {
   CHANGE_SORT_MENU_STATUS: `open/close sort menu`,
   CHANGE_SORT_MENU_VALUE: `change sort menu value`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
-  LOAD_HOTELS: `data/loadHotels`
+  LOAD_HOTELS: `data/loadHotels`,
+  LOAD_COMMENTS: `data/loadComments`
 };
 
 export const ActionCreator = {
@@ -34,5 +35,9 @@ export const ActionCreator = {
   loadHotels: (hotels) => ({
     type: ActionType.LOAD_HOTELS,
     payload: hotels
+  }),
+  loadComments: (comments) => ({
+    type: ActionType.LOAD_COMMENTS,
+    payload: comments
   })
 };

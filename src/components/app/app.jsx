@@ -15,9 +15,7 @@ const App = (props) => {
           <Route path="/favorites" exact>
             <FavoritesPage {...props}/>
           </Route>
-          <Route path="/offer/:id" exact>
-            <PropertyPage {...props} />
-          </Route>
+          <Route path="/offer/:id" exact render={() => <PropertyPage />}/>
           <Route path="/" render={() => <Main {...props}/>} exact/>
           <Route path="*" render={() => <PageNotFound />}/>
         </Switch>
