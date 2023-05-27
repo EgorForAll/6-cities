@@ -8,7 +8,7 @@ const initialState = {
   active_point: null,
   sort_menu_open: false,
   sort_menu_value: SORT_MENU.TOP_RATED,
-  authorization_status: AuthorizationStatus.NO_AUTH,
+  authorization_status: AuthorizationStatus.NOT_INIT,
   isOffersLoaded: false,
   isCommentsLoaded: false,
 };
