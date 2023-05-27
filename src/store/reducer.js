@@ -11,6 +11,7 @@ const initialState = {
   authorization_status: AuthorizationStatus.NOT_INIT,
   isOffersLoaded: false,
   isCommentsLoaded: false,
+  userEmail: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -57,6 +58,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loaded_comments: action.payload,
         isCommentsLoaded: true
+      };
+    case ActionType.EMAIL_USER:
+      return {
+        ...state,
+        userEmail: action.payload
       }
     default:
       return {

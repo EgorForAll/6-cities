@@ -5,8 +5,10 @@ export const ActionType = {
   CHANGE_SORT_MENU_STATUS: `open/close sort menu`,
   CHANGE_SORT_MENU_VALUE: `change sort menu value`,
   REQUIRED_AUTHORIZATION: `user/requiredAuthorization`,
+  EMAIL_USER: `user/email`,
   LOAD_HOTELS: `data/loadHotels`,
-  LOAD_COMMENTS: `data/loadComments`
+  LOAD_COMMENTS: `data/loadComments`,
+  REDIRECT_TO_ROUTE: `redirectToRoute`,
 };
 
 export const ActionCreator = {
@@ -39,5 +41,13 @@ export const ActionCreator = {
   loadComments: (comments) => ({
     type: ActionType.LOAD_COMMENTS,
     payload: comments
+  }),
+  addUserEmail: (email) => ({
+    type: ActionType.EMAIL_USER,
+    payload: email
+  }),
+  redirectToRoute: (url) => ({
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
   })
 };
