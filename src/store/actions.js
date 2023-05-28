@@ -9,7 +9,8 @@ export const ActionType = {
   LOAD_HOTELS: `data/loadHotels`,
   LOAD_COMMENTS: `data/loadComments`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
-  ADD_TO_FAVORITES: `add to favorites`
+  ADD_TO_FAVORITES: `add to favorites`,
+  DELETE_FROM_FAVORITES: `delete from favorites`
 };
 
 export const ActionCreator = {

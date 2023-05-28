@@ -7,12 +7,19 @@ import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
 import {CARD_MODE} from "../../../const/const";
 import {ActionCreator} from "../../../store/actions";
-const CardOffer = (props) => {
-  const {offer} = props;
-  const {mode} = props;
-  const {onFocusCity} = props;
-  const {onUnfocusCity} = props;
 
+const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, favorites}) => {
+
+  const addToFavoritesState = (offer) => {
+    const isInFavorites = favorites.find((item) => item.id === offer.id);
+    if (isInFavorites) {
+      const pos = favorites.indexOf(isInFavorites);
+      onAddToFavorites([...favorites.slice(0, pos), ...favorites.slice(pos + 1)]);
+    } else {
+      const newFavoritesElement = [offer];
+      onAddToFavorites(favorites.concat(newFavoritesElement));
+    }
+  };
   return (
     <article key={offer.id} className={`${ mode === CARD_MODE.MAIN_PAGE ? `cities__place-card place-card` : `near-places__card place-card`}`}  onMouseEnter={() => onFocusCity(offer)} onMouseLeave={() => onUnfocusCity(offer)}>
       {offer.is_premium ? <PremiumMark /> : null}
@@ -27,7 +34,7 @@ const CardOffer = (props) => {
             <b className="place-card__price-value">{offer.price} &euro;</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button className="place-card__bookmark-button button" type="button" onClick={() => addToFavoritesState(offer)}>
             <BookmarkSvg offer={offer}/>
           </button>
         </div>
@@ -48,16 +55,23 @@ const CardOffer = (props) => {
 
 CardOffer.propTypes = offerValid;
 
+const mapStateToProps = (state) => ({
+  favorites: state.favorites
+})
+
 const mapDispatchToProps = (dispatch) => ({
   onFocusCity(point) {
     dispatch(ActionCreator.focusCity(point))
   },
   onUnfocusCity() {
     dispatch(ActionCreator.unfocusCity())
+  },
+  onAddToFavorites(offer) {
+    dispatch(ActionCreator.addToFavorites(offer))
   }
 });
 
 
 export  {CardOffer};
 
-export default connect(null, mapDispatchToProps)(CardOffer)
+export default connect(mapStateToProps, mapDispatchToProps)(CardOffer)

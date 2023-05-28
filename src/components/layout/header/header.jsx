@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 const Header = (props) => {;
   const {userEmail} = props;
-  console.log(userEmail)
+
   return (
     <header className="header">
       <div className="container">
