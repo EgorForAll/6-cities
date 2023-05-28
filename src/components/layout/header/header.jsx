@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import {Link} from "react-router-dom";
-import {useHistory} from "react-router-dom/cjs/react-router-dom.min";
 
-const Header = () => {
-  const history = useHistory();
+const Header = (props) => {;
+  const {userEmail} = props;
+  console.log(userEmail)
   return (
     <header className="header">
       <div className="container">
@@ -19,7 +20,7 @@ const Header = () => {
                 <Link className="header__nav-link header__nav-link--profile" to="/">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  <span className="header__user-name user__name">{userEmail}</span>
                 </Link>
               </li>
             </ul>
@@ -30,4 +31,10 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  userEmail: state.userEmail
+});
+
+export {Header};
+
+export default connect(mapStateToProps, null)(Header);

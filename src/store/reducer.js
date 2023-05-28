@@ -11,7 +11,8 @@ const initialState = {
   authorization_status: AuthorizationStatus.NOT_INIT,
   isOffersLoaded: false,
   isCommentsLoaded: false,
-  userEmail: ''
+  userEmail: '',
+  favorites: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -63,7 +64,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         userEmail: action.payload
-      }
+      };
+    case ActionType.ADD_TO_FAVORITES:
+      return {
+        ...state,
+        favorites: action.payload
+      };
     default:
       return {
         ...state

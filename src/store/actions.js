@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_HOTELS: `data/loadHotels`,
   LOAD_COMMENTS: `data/loadComments`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
+  ADD_TO_FAVORITES: `add to favorites`
 };
 
 export const ActionCreator = {
@@ -49,5 +50,9 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
+  }),
+  addToFavorites: (offers) => ({
+    type: ActionType.ADD_TO_FAVORITES,
+    payload: offers
   })
 };
