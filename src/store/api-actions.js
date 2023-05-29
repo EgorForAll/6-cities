@@ -23,3 +23,8 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
     .then(() => dispatch(ActionCreator.addUserEmail(email)))
     .then(() => dispatch(ActionCreator.redirectToRoute(`/favorites`)))
 );
+
+export const postComment = ({comment, rating}, id) => (dispatch, _getState, api) => (
+  api.post(`/comments/${id}`, {comment, rating})
+  .then(() => dispatch(ActionCreator.postComment(comment)))
+);

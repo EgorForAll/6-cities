@@ -10,7 +10,8 @@ export const ActionType = {
   LOAD_COMMENTS: `data/loadComments`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   ADD_TO_FAVORITES: `add to favorites`,
-  DELETE_FROM_FAVORITES: `delete from favorites`
+  DELETE_FROM_FAVORITES: `delete from favorites`,
+  POST_COMMENT: `post comment`
 };
 
 export const ActionCreator = {
@@ -55,5 +56,9 @@ export const ActionCreator = {
   addToFavorites: (offers) => ({
     type: ActionType.ADD_TO_FAVORITES,
     payload: offers
+  }),
+  postComment: (comment) => ({
+    type: ActionType.POST_COMMENT,
+    payload: comment
   })
 };

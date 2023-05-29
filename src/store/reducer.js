@@ -12,7 +12,8 @@ const initialState = {
   isOffersLoaded: false,
   isCommentsLoaded: false,
   userEmail: '',
-  favorites: []
+  favorites: [],
+  newComment: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -70,6 +71,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         favorites: action.payload
       };
+    case ActionType.POST_COMMENT:
+      return {
+        ...state,
+        newComment: action.payload
+      }
     default:
       return {
         ...state

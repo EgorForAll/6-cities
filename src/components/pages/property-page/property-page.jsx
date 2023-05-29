@@ -11,9 +11,13 @@ import {CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
 import { connect } from "react-redux";
 import { fetchCommentsList } from "../../../store/api-actions";
+import { postComment } from "../../../store/api-actions";
+import { useRef } from "react";
+import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
 
 const PropertyPage = (props) => {
-  const {offers, comments, onLoadComments, isCommentsLoaded} = props;
+  const {offers, comments, onLoadComments, onPostComment, newComment} = props;
+  const commentRef = useRef();
   const chosenOfferId = findOffer(offers).id
   useEffect(() => {
       onLoadComments(chosenOfferId);
@@ -23,6 +27,7 @@ const PropertyPage = (props) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    onPostComment(commentRef.current.value, chosenOfferId);
   };
 
   const handleOnChange = (evt) => {
@@ -113,10 +118,8 @@ const PropertyPage = (props) => {
                 </ul>
                 <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
-                  <div className="reviews__rating-htmlForm htmlForm__rating">
-                    {createStarsArray().map((item) => item)}
-                  </div>
-                  <textarea className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+                  <FormStarsRate />
+                  <textarea ref={commentRef} className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
                       To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
@@ -149,12 +152,16 @@ const PropertyPage = (props) => {
 const mapStateToProps = (state) => ({
   offers: state.loaded_offers,
   comments: state.loaded_comments,
-  isCommentsLoaded: state.isCommentsLoaded
+  isCommentsLoaded: state.isCommentsLoaded,
+  newComment: state.newComment
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadComments(id) {
     dispatch(fetchCommentsList(id))
+  },
+  onPostComment(comment, id) {
+    dispatch(postComment(comment, id))
   }
 })
 

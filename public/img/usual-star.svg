@@ -1,0 +1,3 @@
+<svg className="htmlForm__star-image" width="37" height="33" style={{fill: starColor}}>
+  <use xlinkHref="#icon-star"></use>
+</svg>
