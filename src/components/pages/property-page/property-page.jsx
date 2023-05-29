@@ -18,6 +18,7 @@ import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
 const PropertyPage = (props) => {
   const {offers, comments, onLoadComments, onPostComment, newComment} = props;
   const commentRef = useRef();
+  const formCommentRef = useRef();
   const chosenOfferId = findOffer(offers).id
   useEffect(() => {
       onLoadComments(chosenOfferId);
@@ -116,7 +117,7 @@ const PropertyPage = (props) => {
                 <ul className="reviews__list">
                   {comments.length > 0 ? comments.map((item) => <Review key={item.id} review={item}/>) : null}
                 </ul>
-                <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
+                <form ref={formCommentRef} className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
                   <FormStarsRate />
                   <textarea ref={commentRef} className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
