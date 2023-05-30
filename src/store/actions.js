@@ -11,7 +11,10 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   ADD_TO_FAVORITES: `add to favorites`,
   DELETE_FROM_FAVORITES: `delete from favorites`,
-  POST_COMMENT: `post comment`
+  POST_COMMENT: `post comment`,
+  ADD_A_COMMENT: `add a comment`,
+  PUT_A_RATING: `put a rating`,
+  RESET_A_RATING: `reset a rating`
 };
 
 export const ActionCreator = {
@@ -60,5 +63,16 @@ export const ActionCreator = {
   postComment: (comment) => ({
     type: ActionType.POST_COMMENT,
     payload: comment
+  }),
+  putRating: (rate) => ({
+    type: ActionType.PUT_A_RATING,
+    payload: rate
+  }),
+  addComment: (newComment) => ({
+    type: ActionType.ADD_A_COMMENT,
+    payload: newComment
+  }),
+  resetRating: () => ({
+    type: ActionType.RESET_A_RATING
   })
 };

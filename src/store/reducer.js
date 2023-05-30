@@ -13,7 +13,8 @@ const initialState = {
   isCommentsLoaded: false,
   userEmail: '',
   favorites: [],
-  newComment: ''
+  newComment: '',
+  currentRate: null
 };
 
 export const reducer = (state = initialState, action) => {
@@ -75,7 +76,22 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         newComment: action.payload
+      };
+    case ActionType.PUT_A_RATING:
+      return {
+        ...state,
+        currentRate: action.payload
+      };
+    case ActionType.RESET_A_RATING:
+      return {
+        ...state,
+        currentRate: null
       }
+    case ActionType.ADD_A_COMMENT:
+      return {
+        ...state,
+        loaded_comments: action.payload
+      };
     default:
       return {
         ...state

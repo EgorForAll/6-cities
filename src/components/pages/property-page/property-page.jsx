@@ -1,34 +1,41 @@
 import React, {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "/src/components/layout/header/header";
 import CardOffer from "../../blocks/card-offer/card-offer";
 import PropertyText from "../../ui/property-text";
-import StarRate, { createStarsArray } from "../../ui/star-rate";
 import {countRating} from "/src/utils/utils";
 import { findOffer } from "../../../utils/utils";
 import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
-import {CARD_MODE} from "../../../const/const";
+import {AuthorizationStatus, CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
 import { connect } from "react-redux";
 import { fetchCommentsList } from "../../../store/api-actions";
 import { postComment } from "../../../store/api-actions";
 import { useRef } from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
+import { ActionCreator } from "../../../store/actions";
 
 const PropertyPage = (props) => {
-  const {offers, comments, onLoadComments, onPostComment, newComment} = props;
+  const {offers, comments, onLoadComments, onPostComment, newComment, rate, authorizationStatus, onResetRate} = props;
   const commentRef = useRef();
-  const formCommentRef = useRef();
+  const history = useHistory();
   const chosenOfferId = findOffer(offers).id
   useEffect(() => {
-      onLoadComments(chosenOfferId);
+    onLoadComments(chosenOfferId);
+    return () => {
+      onResetRate();
+    }
   }, []);
 
   const [state, setState] = useState({value: ``});
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onPostComment(commentRef.current.value, chosenOfferId);
+    authorizationStatus === AuthorizationStatus.AUTH ?
+      onPostComment(commentRef.current.value, rate, chosenOfferId)
+        : history.push(`/login`);
   };
 
   const handleOnChange = (evt) => {
@@ -117,7 +124,7 @@ const PropertyPage = (props) => {
                 <ul className="reviews__list">
                   {comments.length > 0 ? comments.map((item) => <Review key={item.id} review={item}/>) : null}
                 </ul>
-                <form ref={formCommentRef} className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
+                <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
                   <FormStarsRate />
                   <textarea ref={commentRef} className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
@@ -154,15 +161,20 @@ const mapStateToProps = (state) => ({
   offers: state.loaded_offers,
   comments: state.loaded_comments,
   isCommentsLoaded: state.isCommentsLoaded,
-  newComment: state.newComment
+  newComment: state.newComment,
+  rate: state.currentRate,
+  authorizationStatus: state.authorization_status
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadComments(id) {
     dispatch(fetchCommentsList(id))
   },
-  onPostComment(comment, id) {
-    dispatch(postComment(comment, id))
+  onPostComment(comment, rating, id) {
+    dispatch(postComment({comment, rating}, id))
+  },
+  onResetRate(){
+    dispatch(ActionCreator.resetRating())
   }
 })
 

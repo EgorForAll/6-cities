@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { login } from "../../../store/api-actions";
 import { connect } from "react-redux";
 import {useHistory} from "react-router-dom";
@@ -15,7 +15,7 @@ const Login = ({onSubmit}) => {
       login: emailRef.current.value,
       password: passwordRef.current.value
     });
-    history.push(`/favorites`);
+    history.push(`/`);
   }
   return (
     <div className="page page--gray page--login">
