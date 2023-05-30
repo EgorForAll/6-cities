@@ -1,27 +1,46 @@
 import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import Header from "/src/components/layout/header/header";
 import CardOffer from "../../blocks/card-offer/card-offer";
 import PropertyText from "../../ui/property-text";
 import {countRating} from "/src/utils/utils";
-import { findOffer } from "../../../utils/utils";
+import {findOffer} from "../../../utils/utils";
 import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 import {AuthorizationStatus, CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
-import { connect } from "react-redux";
-import { fetchCommentsList } from "../../../store/api-actions";
-import { postComment } from "../../../store/api-actions";
-import { useRef } from "react";
+import {connect} from "react-redux";
+import {fetchCommentsList} from "../../../store/api-actions";
+import {postComment} from "../../../store/api-actions";
+import {useRef} from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
-import { ActionCreator } from "../../../store/actions";
+import {ActionCreator} from "../../../store/actions";
 
 const PropertyPage = (props) => {
-  const {offers, comments, onLoadComments, onPostComment, newComment, rate, authorizationStatus, onResetRate} = props;
+  const {offers, comments, onLoadComments, onPostComment, rate, authorizationStatus, onResetRate, currentOfferComments} = props;
   const commentRef = useRef();
+  const submitBtnRef = useRef();
   const history = useHistory();
-  const chosenOfferId = findOffer(offers).id
+  const [commentValue, setCommentValue] = useState({value: ``});
+  const chosenOfferId = findOffer(offers).id;
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    authorizationStatus === AuthorizationStatus.AUTH ?
+      onPostComment(commentRef.current.value, rate, chosenOfferId)
+        : history.push(`/login`);
+    commentRef.current.value = '';
+    onResetRate();
+  };
+
+  useEffect(() => {
+    if (commentRef.current.value.length >= 50 && commentRef.current.value.length <= 200) {
+      submitBtnRef.current.disabled = false;
+      return;
+    }
+    submitBtnRef.current.disabled = true;
+  }, [commentValue])
+
   useEffect(() => {
     onLoadComments(chosenOfferId);
     return () => {
@@ -29,18 +48,12 @@ const PropertyPage = (props) => {
     }
   }, []);
 
-  const [state, setState] = useState({value: ``});
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    authorizationStatus === AuthorizationStatus.AUTH ?
-      onPostComment(commentRef.current.value, rate, chosenOfferId)
-        : history.push(`/login`);
-  };
-
-  const handleOnChange = (evt) => {
-    setState({value: evt.target.value});
-  };
+  useEffect(() => {
+    if (currentOfferComments.length) {
+      const postedCommentDates =  currentOfferComments[currentOfferComments.length - 1];
+      comments.push(postedCommentDates);
+    }
+  }, [currentOfferComments])
 
   const nearOffers = offers.slice(0, 3);
   const currentOffer = findOffer(offers);
@@ -127,12 +140,12 @@ const PropertyPage = (props) => {
                 <form className="reviews__htmlForm htmlForm" action="#" method="post" onSubmit={(evt) => handleSubmit(evt)}>
                   <label className="reviews__label htmlForm__label" htmlFor="review">Your review</label>
                   <FormStarsRate />
-                  <textarea ref={commentRef} className="reviews__textarea htmlForm__textarea" value={state.value} onChange={handleOnChange} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
+                  <textarea ref={commentRef} className="reviews__textarea htmlForm__textarea" value={commentValue.value} onChange={(evt) => setCommentValue(evt.target.value)} id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
                   <div className="reviews__button-wrapper">
                     <p className="reviews__help">
                       To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
                     </p>
-                    <button className="reviews__submit htmlForm__submit button" type="submit" disabled="">Submit</button>
+                    <button ref={submitBtnRef} className="reviews__submit htmlForm__submit button" type="submit" >Submit</button>
                   </div>
                 </form>
               </section>
@@ -163,7 +176,8 @@ const mapStateToProps = (state) => ({
   isCommentsLoaded: state.isCommentsLoaded,
   newComment: state.newComment,
   rate: state.currentRate,
-  authorizationStatus: state.authorization_status
+  authorizationStatus: state.authorization_status,
+  currentOfferComments: state.commetsById
 });
 
 const mapDispatchToProps = (dispatch) => ({

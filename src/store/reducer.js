@@ -13,8 +13,9 @@ const initialState = {
   isCommentsLoaded: false,
   userEmail: '',
   favorites: [],
-  newComment: '',
-  currentRate: null
+  newComment: null,
+  currentRate: null,
+  commetsById: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -92,6 +93,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loaded_comments: action.payload
       };
+    case ActionType.LOAD_COMMENTS_BY_ID:
+        return {
+          ...state,
+          commetsById: action.payload
+        }
     default:
       return {
         ...state

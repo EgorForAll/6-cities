@@ -14,7 +14,8 @@ export const ActionType = {
   POST_COMMENT: `post comment`,
   ADD_A_COMMENT: `add a comment`,
   PUT_A_RATING: `put a rating`,
-  RESET_A_RATING: `reset a rating`
+  RESET_A_RATING: `reset a rating`,
+  LOAD_COMMENTS_BY_ID: `load comments by id`
 };
 
 export const ActionCreator = {
@@ -74,5 +75,9 @@ export const ActionCreator = {
   }),
   resetRating: () => ({
     type: ActionType.RESET_A_RATING
+  }),
+  loadCommentsById: (comments) => ({
+    type: ActionType.LOAD_COMMENTS_BY_ID,
+    payload: comments
   })
 };

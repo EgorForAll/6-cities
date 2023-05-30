@@ -26,5 +26,6 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
 
 export const postComment = ({comment, rating}, id) => (dispatch, _getState, api) => (
   api.post(`/comments/${id}`, {comment, rating})
+  .then((response) => dispatch(ActionCreator.loadCommentsById(response.data)))
   .then(() => dispatch(ActionCreator.postComment(comment)))
 );
