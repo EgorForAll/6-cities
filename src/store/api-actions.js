@@ -1,5 +1,5 @@
-import { ActionCreator } from "./actions";
-import { AuthorizationStatus } from "../const/const";
+import {ActionCreator} from "./actions";
+import {AuthorizationStatus} from "../const/const";
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)

@@ -1,4 +1,4 @@
-export const SORT_MENU =  {
+export const SORT_MENU = {
   POPULAR: `Popular`,
   HIGHT_TO_LOW: `Price: high to low`,
   LOW_TO_HIGH: `Price: low to high`,
@@ -23,7 +23,7 @@ export const CARD_MODE = {
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
-  NOT_INIT: 'NOT_INIT'
+  NOT_INIT: `NOT_INIT`
 };
 
 

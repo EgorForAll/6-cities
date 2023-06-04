@@ -11,10 +11,10 @@ const initialState = {
   authorization_status: AuthorizationStatus.NOT_INIT,
   isOffersLoaded: false,
   isCommentsLoaded: false,
-  userEmail: '',
+  userEmail: ``,
   favorites: [],
   newComment: null,
-  currentRate: null,
+  currentRate: 0,
   commetsById: []
 };
 
@@ -86,21 +86,21 @@ export const reducer = (state = initialState, action) => {
     case ActionType.RESET_A_RATING:
       return {
         ...state,
-        currentRate: null
-      }
+        currentRate: 0
+      };
     case ActionType.ADD_A_COMMENT:
       return {
         ...state,
         loaded_comments: action.payload
       };
     case ActionType.LOAD_COMMENTS_BY_ID:
-        return {
-          ...state,
-          commetsById: action.payload
-        }
+      return {
+        ...state,
+        commetsById: action.payload
+      };
     default:
       return {
         ...state
-      }
+      };
   }
 };

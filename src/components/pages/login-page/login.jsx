@@ -15,7 +15,7 @@ const Login = ({onSubmit}) => {
       login: emailRef.current.value,
       password: passwordRef.current.value
     });
-    history.push(`/`);
+    history.push(`/favorites`);
   }
   return (
     <div className="page page--gray page--login">

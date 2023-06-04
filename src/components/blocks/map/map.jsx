@@ -1,15 +1,13 @@
 import React, {useEffect, useRef} from "react";
-import leaflet from 'leaflet';
-import {connect} from 'react-redux';
+import leaflet from "leaflet";
+import {connect} from "react-redux";
 import {LeafletParameters} from "../../../const/const";
-import 'leaflet/dist/leaflet.css';
-import propTypes from "prop-types";
-import { offersValid } from "../../../prop-types/offers";
+import "leaflet/dist/leaflet.css";
+import {offersValid} from "../../../prop-types/offers";
 
 
 const Map = (props) => {
-  const {points} = props;
-  const activePoint = props.activePoint;
+  const {points, activePoint} = props;
   const mapRef = useRef();
   const city = points[0].city;
 
@@ -23,7 +21,7 @@ const Map = (props) => {
     });
     return () => {
       mapRef.current.remove();
-    }
+    };
   }, [city]);
 
   useEffect(() => {
@@ -57,9 +55,11 @@ const Map = (props) => {
   }, [points, activePoint]);
 
   return (
-    <div id="map" style={{height: '100%'}} ref={mapRef}></div>
+    <div id="map" style={{height: `100%`}} ref={mapRef}></div>
   );
 };
+
+Map.propTypes = offersValid;
 
 const mapStateToProps = (state) => ({
   marker: state.markerImage,

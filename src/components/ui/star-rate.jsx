@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import { ActionCreator } from "../../store/actions";
-import { connect } from "react-redux";
+import React from "react";
+import {ActionCreator} from "../../store/actions";
+import {connect} from "react-redux";
+import propTypes from "prop-types";
 
 const StarRate = ({value, id, onPutRate}) => {
 
@@ -16,9 +17,15 @@ const StarRate = ({value, id, onPutRate}) => {
   );
 };
 
+StarRate.propTypes = {
+  value: propTypes.number.isRequired,
+  id: propTypes.number.isRequired,
+  onPutRate: propTypes.func.isRequired
+};
+
 const mapDispatchToProps = (dispatch) => ({
   onPutRate(rate) {
-    dispatch(ActionCreator.putRating(rate))
+    dispatch(ActionCreator.putRating(rate));
   }
 });
 

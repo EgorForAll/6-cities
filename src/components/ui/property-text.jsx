@@ -13,5 +13,6 @@ const PropertyText = ({text}) => {
 
 PropertyText.propTypes = {
   text: propTypes.string.isRequired
-}
+};
+
 export default PropertyText;

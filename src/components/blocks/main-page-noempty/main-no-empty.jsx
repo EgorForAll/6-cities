@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
 import {CITIES_LIST, CARD_MODE} from "/src/const/const";
@@ -11,8 +11,7 @@ import {ActionCreator} from "../../../store/actions";
 import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
 
 const MainNoEmpty = (props) => {
-  const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus} = props;
-  const chosenCity = props.chosen_city
+  const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus, chosenCity} = props;
   const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
 
   const toSortOffers = (sortType) => {
@@ -26,7 +25,7 @@ const MainNoEmpty = (props) => {
       default:
         return selectedCityHotels;
     }
-  }
+  };
 
   const sortedOffers = toSortOffers(sortMenuValue);
 
@@ -47,7 +46,7 @@ const MainNoEmpty = (props) => {
             <b className="places__found">{selectedCityHotels.length} places to stay in {chosenCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
-              <span style={{marginLeft: '5px'}} className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenuStatus()}>
+              <span style={{marginLeft: `5px`}} className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenuStatus()}>
                 {sortMenuValue}
                 <svg className="places__sorting-arrow" width="7" height="4">
                   <use xlinkHref="#icon-arrow-select"></use>
@@ -60,9 +59,9 @@ const MainNoEmpty = (props) => {
             </div>
           </section>
           <div className="cities__right-section">
-          <section className="cities__map map">
-            <Map  points={selectedCityHotels}/>
-          </section>
+            <section className="cities__map map">
+              <Map points={selectedCityHotels}/>
+            </section>
           </div>
         </div>
       </div>
@@ -73,7 +72,7 @@ const MainNoEmpty = (props) => {
 MainNoEmpty.propTypes = offerValid;
 
 const mapStateToProps = (state) => ({
-  chosen_city: state.chosen_city,
+  chosenCity: state.chosen_city,
   offers: state.loaded_offers,
   isOpenSortMenu: state.sort_menu_open,
   sortMenuValue: state.sort_menu_value,
@@ -82,9 +81,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSortMenuStatus() {
-    dispatch(ActionCreator.onChangeSortMenuStatus())
+    dispatch(ActionCreator.onChangeSortMenuStatus());
   }
-})
+});
 
 export {MainNoEmpty};
 

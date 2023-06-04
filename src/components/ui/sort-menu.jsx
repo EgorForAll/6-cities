@@ -1,15 +1,23 @@
 import React from "react";
 import {SORT_MENU} from "../../const/const";
 import propTypes from "prop-types";
-import { connect } from "react-redux";
-import { ActionCreator } from "../../store/actions";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/actions";
 
 const SortMenu = (props) => {
   const {sortMenuValue, onChangeSortMenuStatus, onChangeSortMenuValue} = props;
-
+  const findID = (item) => Object.values(SORT_MENU).indexOf(item);
+  const findClassName = (item) => `places__option ${item === sortMenuValue ? `places__option--active` : ``}`;
+  const executeAllHandles = (item) => {
+    onChangeSortMenuValue(item);
+    onChangeSortMenuStatus();
+  };
   return (
     <ul className="places__options places__options--custom places__options--opened" onMouseLeave={() => setTimeout(onChangeSortMenuStatus, 500) }>
-      {Object.values(SORT_MENU).map((item) => <li key={Object.values(SORT_MENU).indexOf(item)} className={`places__option ${item === sortMenuValue ? `places__option--active` : ''}`} tabIndex={Object.values(SORT_MENU).indexOf(item)} onClick={() => {onChangeSortMenuValue(item); onChangeSortMenuStatus()}}>{item}</li>)}
+      {Object.values(SORT_MENU).map((item) =>
+        <li key={findID(item)} className={findClassName(item)} tabIndex={findID(item)} onClick={() => executeAllHandles(item)}>
+          {item}
+        </li>)};
     </ul>
   );
 };
@@ -21,13 +29,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangeSortMenuStatus () {
-    dispatch(ActionCreator.onChangeSortMenuStatus())
+  onChangeSortMenuStatus() {
+    dispatch(ActionCreator.onChangeSortMenuStatus());
   },
-  onChangeSortMenuValue (value) {
-    dispatch(ActionCreator.onChangeSortMenuValue(value))
+  onChangeSortMenuValue(value) {
+    dispatch(ActionCreator.onChangeSortMenuValue(value));
   }
-})
+});
 
 export {SortMenu};
 export default connect(mapStateToProps, mapDispatchToProps)(SortMenu);
