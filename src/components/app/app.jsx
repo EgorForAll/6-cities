@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {CLIENT_PATHES} from "../../const/const";
 import Main from "../pages/main-page/main";
 import LoginPage from "../pages/login-page/login";
 import FavoritesPage from "../pages/favorites-page/favorites-page";
@@ -12,14 +13,14 @@ const App = (props) => {
     <>
       <BrowserRouter>
         <Switch>
-          <Route path="/login" exact component={LoginPage}/>
+          <Route path={CLIENT_PATHES.LOGIN} exact component={LoginPage}/>
           <PrivateRoute
-            path="/favorites"
+            path={CLIENT_PATHES.FAVORITES}
             exact
             render={() => <FavoritesPage {...props}/>}>
           </PrivateRoute>
-          <Route path="/offer/:id" exact render={() => <PropertyPage />}/>
-          <Route path="/" render={() => <Main {...props}/>} exact/>
+          <Route path={CLIENT_PATHES.PROPERTY_PAGE} exact render={() => <PropertyPage />}/>
+          <Route path={CLIENT_PATHES.MAIN} render={() => <Main {...props}/>} exact/>
           <Route path="*" render={() => <PageNotFound />}/>
         </Switch>
       </BrowserRouter>

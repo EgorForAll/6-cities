@@ -1,7 +1,8 @@
 import React from "react";
-import { useRef } from "react";
-import { login } from "../../../store/api-actions";
-import { connect } from "react-redux";
+import {useRef} from "react";
+import {login} from "../../../store/api-actions";
+import {connect} from "react-redux";
+import {CLIENT_PATHES} from "../../../const/const";
 import {useHistory} from "react-router-dom";
 
 const Login = ({onSubmit}) => {
@@ -15,7 +16,7 @@ const Login = ({onSubmit}) => {
       login: emailRef.current.value,
       password: passwordRef.current.value
     });
-    history.push(`/favorites`);
+    history.push(CLIENT_PATHES.FAVORITES);
   }
   return (
     <div className="page page--gray page--login">

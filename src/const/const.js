@@ -26,5 +26,12 @@ export const AuthorizationStatus = {
   NOT_INIT: `NOT_INIT`
 };
 
+export const CLIENT_PATHES = {
+  MAIN: `/`,
+  FAVORITES: `/favorites`,
+  LOGIN: `/login`,
+  PROPERTY_PAGE: `/offer/:id`
+};
+
 
 export const CITIES_LIST = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];
