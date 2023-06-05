@@ -9,9 +9,10 @@ import {AuthorizationStatus} from './const/const';
 import rootReducer from './store/root-reducer';
 import {checkAuth} from './store/api-actions';
 import {redirect} from './store/middleware/redirect';
+import {requireAuthorization} from './store/actions';
 
 const api = createAPI(
-    () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH))
+    () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
 );
 
 const store = configureStore({

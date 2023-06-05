@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/actions";
-import { getChosenCity } from "../../store/reducers/main-page/selector";
+import {toToggleCity} from "../../store/actions";
+import {getChosenCity} from "../../store/reducers/main-page/selector";
 
 const Tabs = ({arrayOfCities, onToggleCity, chosenCity}) => {
 
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onToggleCity(city) {
-    dispatch(ActionCreator.toggleCity(city));
+    dispatch(toToggleCity(city));
   },
 });
 

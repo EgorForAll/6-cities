@@ -14,13 +14,13 @@ import {fetchCommentsList} from "../../../store/api-actions";
 import {postComment} from "../../../store/api-actions";
 import {useRef} from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
-import {ActionCreator} from "../../../store/actions";
+import {resetRating} from "../../../store/actions";
 import {getAuthorization} from "../../../store/reducers/authorization/selector";
-import { checkCommentsLoading, getCommentById, getComments, getNewComment, getOffers } from "../../../store/reducers/data/selector";
-import { getCurrentRate } from "../../../store/reducers/rating/selector";
+import {checkCommentsLoading, getComments, getNewComment, getOffers, checkCommentPosted} from "../../../store/reducers/data/selector";
+import {getCurrentRate} from "../../../store/reducers/rating/selector";
 
 const PropertyPage = (props) => {
-  const {offers, comments, onLoadComments, onPostComment, rate, authorizationStatus, onResetRate, currentOfferComments} = props;
+  const {offers, comments, onLoadComments, onPostComment, rate, authorizationStatus, onResetRate, isCommentPosted} = props;
   const commentRef = useRef();
   const submitBtnRef = useRef();
   const history = useHistory();
@@ -49,14 +49,7 @@ const PropertyPage = (props) => {
     return () => {
       onResetRate();
     }
-  }, []);
-
-  useEffect(() => {
-    if (currentOfferComments.length) {
-      const postedCommentDates =  currentOfferComments[currentOfferComments.length - 1];
-      comments.push(postedCommentDates);
-    }
-  }, [currentOfferComments])
+  }, [isCommentPosted]);
 
   const nearOffers = offers.slice(0, 3);
   const currentOffer = findOffer(offers);
@@ -180,7 +173,7 @@ const mapStateToProps = (state) => ({
   newComment: getNewComment(state),
   rate: getCurrentRate(state),
   authorizationStatus: getAuthorization(state),
-  currentOfferComments: getCommentById(state)
+  isCommentPosted: checkCommentPosted(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -191,7 +184,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(postComment({comment, rating}, id))
   },
   onResetRate(){
-    dispatch(ActionCreator.resetRating())
+    dispatch(resetRating())
   }
 })
 

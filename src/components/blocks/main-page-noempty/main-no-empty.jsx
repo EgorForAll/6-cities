@@ -7,7 +7,7 @@ import {offerValid} from "/src/prop-types/offer";
 import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
 import {SORT_MENU} from "../../../const/const";
-import {ActionCreator} from "../../../store/actions";
+import {onChangeSortMenuStatus} from "../../../store/actions";
 import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
 import { checkOffersLoading, getOffers } from "../../../store/reducers/data/selector";
 import { checkSortMenuOpening, getChosenCity, getSortMEnuValue } from "../../../store/reducers/main-page/selector";
@@ -83,7 +83,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSortMenuStatus() {
-    dispatch(ActionCreator.onChangeSortMenuStatus());
+    dispatch(onChangeSortMenuStatus());
   }
 });
 

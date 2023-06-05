@@ -1,3 +1,5 @@
+import {createAction} from '@reduxjs/toolkit';
+
 export const ActionType = {
   TOGGLE_CITY: `toggle city`,
   FOCUS_CITY: `focus city`,
@@ -18,66 +20,87 @@ export const ActionType = {
   LOAD_COMMENTS_BY_ID: `load comments by id`
 };
 
-export const ActionCreator = {
-  toggleCity: (parametr) => ({
-    type: ActionType.TOGGLE_CITY,
-    city: parametr
-  }),
-  focusCity: (point) => ({
-    type: ActionType.FOCUS_CITY,
-    activePoint: point
-  }),
-  unfocusCity: () => ({
-    type: ActionType.UNFOCUS_CITY,
-  }),
-  onChangeSortMenuStatus: () => ({
-    type: ActionType.CHANGE_SORT_MENU_STATUS,
-  }),
-  onChangeSortMenuValue: (value) => ({
-    type: ActionType.CHANGE_SORT_MENU_VALUE,
-    newValue: value
-  }),
-  requireAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  }),
-  loadHotels: (hotels) => ({
-    type: ActionType.LOAD_HOTELS,
-    payload: hotels
-  }),
-  loadComments: (comments) => ({
-    type: ActionType.LOAD_COMMENTS,
-    payload: comments
-  }),
-  addUserEmail: (email) => ({
-    type: ActionType.EMAIL_USER,
+// Взаимодействие с компонентами на главной странице
+export const toToggleCity = createAction(ActionType.TOGGLE_CITY, (toggledCity) => {
+  return {
+    payload: toggledCity
+  }
+});
+
+export const toFocusCity = createAction(ActionType.FOCUS_CITY, (point) => {
+  return {
+    payload: point
+  }
+});
+
+export const toUnfocusCity = createAction(ActionType.UNFOCUS_CITY);
+export const onChangeSortMenuStatus = createAction(ActionType.CHANGE_SORT_MENU_STATUS);
+
+export const onChangeSortMenuValue = createAction(ActionType.CHANGE_SORT_MENU_VALUE, (value) => {
+  return {
+    payload: value
+  }
+});
+
+// Авторизация
+export const requireAuthorization = createAction(ActionType.REQUIRED_AUTHORIZATION, (status) => {
+  return {
+    payload: status
+  }
+});
+
+export const addUserEmail = createAction(ActionType.EMAIL_USER, (email) => {
+  return {
     payload: email
-  }),
-  redirectToRoute: (url) => ({
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  }),
-  addToFavorites: (offers) => ({
-    type: ActionType.ADD_TO_FAVORITES,
-    payload: offers
-  }),
-  postComment: (comment) => ({
-    type: ActionType.POST_COMMENT,
-    payload: comment
-  }),
-  putRating: (rate) => ({
-    type: ActionType.PUT_A_RATING,
-    payload: rate
-  }),
-  addComment: (newComment) => ({
-    type: ActionType.ADD_A_COMMENT,
-    payload: newComment
-  }),
-  resetRating: () => ({
-    type: ActionType.RESET_A_RATING
-  }),
-  loadCommentsById: (comments) => ({
-    type: ActionType.LOAD_COMMENTS_BY_ID,
+  }
+});
+
+// Работа с данными
+export const onLoadHotels = createAction(ActionType.LOAD_HOTELS, (hotels) => {
+  return {
+    payload: hotels
+  }
+});
+
+export const onLoadComments = createAction(ActionType.LOAD_COMMENTS, (comments) => {
+  return {
     payload: comments
-  })
-};
+  }
+});
+
+export const onPostComment = createAction(ActionType.POST_COMMENT, (comment) => {
+  return {
+    payload: comment
+  }
+});
+
+export const addComment = createAction(ActionType.ADD_A_COMMENT, (comment) => {
+  return {
+    payload: comment
+  }
+});
+
+// Роутинг
+export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => {
+  return {
+    payload: url
+  }
+});
+
+// Работа с избранным
+export const addToFavorites = createAction(ActionType.ADD_TO_FAVORITES, (offers) => {
+  return {
+    payload: offers
+  }
+});
+
+// Рейтинг
+export const onPutRating = createAction(ActionType.PUT_A_RATING, (rate) => {
+  return {
+    payload: rate
+  }
+});
+
+export const resetRating = createAction(ActionType.RESET_A_RATING);
+
+

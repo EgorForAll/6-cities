@@ -6,3 +6,4 @@ export const getComments = (state) => state[nameSpace.DATA].loaded_comments;
 export const checkCommentsLoading = (state) => state[nameSpace.DATA].isCommentsLoaded;
 export const getNewComment = (state) => state[nameSpace.DATA].newComment;
 export const getCommentById = (state) => state[nameSpace.DATA].commentById;
+export const checkCommentPosted = (state) => state[nameSpace.DATA].isCommentPosted

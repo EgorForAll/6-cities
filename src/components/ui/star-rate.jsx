@@ -1,5 +1,5 @@
 import React from "react";
-import {ActionCreator} from "../../store/actions";
+import {onPutRating} from "../../store/actions";
 import {connect} from "react-redux";
 import propTypes from "prop-types";
 
@@ -25,7 +25,7 @@ StarRate.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onPutRate(rate) {
-    dispatch(ActionCreator.putRating(rate));
+    dispatch(onPutRating(rate));
   }
 });
 

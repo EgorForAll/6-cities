@@ -1,46 +1,30 @@
-import {ActionType} from "../../actions";
+import {createReducer} from "@reduxjs/toolkit";
+import {onLoadComments, onLoadHotels, onPostComment, addComment} from "../../actions";
 
 const initialState = {
   loaded_offers: [],
   isOffersLoaded: false,
   loaded_comments: [],
   isCommentsLoaded: false,
-  newComment: null,
-  commentById: []
+  isCommentPosted: false,
+  newComment: null
 };
 
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case ActionType.LOAD_HOTELS:
-      return {
-        ...state,
-        loaded_offers: action.payload,
-        isOffersLoaded: true
-      };
-    case ActionType.LOAD_COMMENTS:
-      return {
-        ...state,
-        loaded_comments: action.payload,
-        isCommentsLoaded: true
-      };
-    case ActionType.POST_COMMENT:
-      return {
-        ...state,
-        newComment: action.payload
-      };
-    case ActionType.ADD_A_COMMENT:
-      return {
-        ...state,
-        loaded_comments: action.payload
-      };
-    case ActionType.LOAD_COMMENTS_BY_ID:
-      return {
-        ...state,
-        commentById: action.payload
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+export const DataReducer = createReducer(initialState, (builder) => {
+  builder.addCase(onLoadHotels, (state, action) => {
+    state.loaded_offers = action.payload;
+    state.isOffersLoaded = true;
+  });
+  builder.addCase(onLoadComments, (state, action) => {
+    state.loaded_comments = action.payload;
+    state.isCommentsLoaded = true;
+    state.isCommentPosted = false;
+  });
+  builder.addCase(onPostComment, (state, action) => {
+    state.newComment = action.payload;
+    state.isCommentPosted = true;
+  });
+  builder.addCase(addComment, (state, action) => {
+    state.loaded_comments = action.payload;
+  });
+});

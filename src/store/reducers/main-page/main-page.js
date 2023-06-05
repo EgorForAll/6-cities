@@ -1,5 +1,6 @@
-import {ActionType} from "../../actions";
 import {SORT_MENU} from "../../../const/const";
+import {createReducer} from "@reduxjs/toolkit";
+import {toToggleCity, toFocusCity, toUnfocusCity, onChangeSortMenuStatus, onChangeSortMenuValue} from "../../actions";
 
 const initialState = {
   chosen_city: `Paris`,
@@ -9,37 +10,22 @@ const initialState = {
   markerImage: null
 }
 
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case ActionType.TOGGLE_CITY:
-      return {
-        ...state,
-        chosen_city: action.city
-      };
-    case ActionType.FOCUS_CITY:
-      return {
-        ...state,
-        active_point: action.activePoint
-      };
-    case ActionType.UNFOCUS_CITY:
-      return {
-        ...state,
-        markerImage: initialState.markerImage,
-        active_point: null
-      };
-    case ActionType.CHANGE_SORT_MENU_STATUS:
-      return {
-        ...state,
-        sort_menu_open: !state.sort_menu_open
-      };
-    case ActionType.CHANGE_SORT_MENU_VALUE:
-      return {
-        ...state,
-        sort_menu_value: action.newValue
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+export const MainPageReducer = createReducer(initialState, (builder) => {
+  builder.addCase(toToggleCity, (state, action) => {
+    state.chosen_city = action.payload;
+  });
+  builder.addCase(toFocusCity, (state, action) => {
+    state.active_point = action.payload;
+  });
+  builder.addCase(toUnfocusCity, (state) => {
+    state.active_point = null;
+    state.markerImage = null;
+  });
+  builder.addCase(onChangeSortMenuStatus, (state) => {
+    state.sort_menu_open = !state.sort_menu_open;
+  });
+  builder.addCase(onChangeSortMenuValue, (state, action) => {
+    state.sort_menu_value = action.payload;
+  });
+});
+

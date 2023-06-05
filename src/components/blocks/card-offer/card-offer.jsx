@@ -6,8 +6,8 @@ import {offerValid} from "/src/prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
 import {CARD_MODE} from "../../../const/const";
-import {ActionCreator} from "../../../store/actions";
-import { getFavorites } from "../../../store/reducers/favorites/selector";
+import {toFocusCity, toUnfocusCity, addToFavorites} from "../../../store/actions";
+import {getFavorites} from "../../../store/reducers/favorites/selector";
 
 const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, favorites}) => {
 
@@ -62,13 +62,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onFocusCity(point) {
-    dispatch(ActionCreator.focusCity(point))
+    dispatch(toFocusCity(point))
   },
   onUnfocusCity() {
-    dispatch(ActionCreator.unfocusCity())
+    dispatch(toUnfocusCity())
   },
   onAddToFavorites(offer) {
-    dispatch(ActionCreator.addToFavorites(offer))
+    dispatch(addToFavorites(offer))
   }
 });
 

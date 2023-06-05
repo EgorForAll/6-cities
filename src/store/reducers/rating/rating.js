@@ -1,24 +1,16 @@
-import {ActionType} from "../../actions";
+import {createReducer} from "@reduxjs/toolkit";
+import {onPutRating, resetRating} from "../../actions";
 
 const initialState = {
   currentRate: 0
 }
 
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case ActionType.PUT_A_RATING:
-      return {
-        ...state,
-        currentRate: action.payload
-      };
-    case ActionType.RESET_A_RATING:
-      return {
-        ...state,
-        currentRate: 0
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+export const RatingReducer = createReducer(initialState, (builder) => {
+  builder.addCase(onPutRating, (state, action) => {
+    state.currentRate = action.payload;
+  });
+  builder.addCase(resetRating, (state) => {
+    state.currentRate = 0;
+  });
+});
+

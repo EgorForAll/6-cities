@@ -2,7 +2,7 @@ import React from "react";
 import {SORT_MENU} from "../../const/const";
 import propTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/actions";
+import {onChangeSortMenuStatus, onChangeSortMenuValue} from "../../store/actions";
 
 const SortMenu = (props) => {
   const {sortMenuValue, onChangeSortMenuStatus, onChangeSortMenuValue} = props;
@@ -30,10 +30,10 @@ const mapStateToProps = ({MAIN}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeSortMenuStatus() {
-    dispatch(ActionCreator.onChangeSortMenuStatus());
+    dispatch(onChangeSortMenuStatus());
   },
   onChangeSortMenuValue(value) {
-    dispatch(ActionCreator.onChangeSortMenuValue(value));
+    dispatch(onChangeSortMenuValue(value));
   }
 });
 

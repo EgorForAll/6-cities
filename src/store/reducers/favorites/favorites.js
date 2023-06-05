@@ -1,19 +1,13 @@
-import {ActionType} from "../../actions";
+import {createReducer} from "@reduxjs/toolkit";
+import {addToFavorites} from "../../actions";
 
 const initialState = {
   favorites: []
 }
 
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case ActionType.ADD_TO_FAVORITES:
-      return {
-        ...state,
-        favorites: action.payload
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+export const FavoritesReducer = createReducer(initialState, (builder) => {
+  builder.addCase(addToFavorites, (state, action) => {
+    state.favorites = action.payload;
+  });
+});
+

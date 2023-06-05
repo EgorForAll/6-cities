@@ -1,4 +1,5 @@
-import {ActionType} from "../../actions";
+import {createReducer} from "@reduxjs/toolkit";
+import {requireAuthorization, addUserEmail} from "../../actions";
 import {AuthorizationStatus} from "../../../const/const";
 
 const initialState = {
@@ -6,21 +7,11 @@ const initialState = {
   userEmail: ``
 };
 
-export default function (state = initialState, action)  {
-  switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
-      return {
-        ...state,
-        authorization_status: action.payload
-      };
-    case ActionType.EMAIL_USER:
-      return {
-        ...state,
-        userEmail: action.payload
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+export const AuthorizationReducer = createReducer(initialState, (builder) => {
+  builder.addCase(requireAuthorization, (state, action) => {
+    state.authorization_status = action.payload;
+  });
+  builder.addCase(addUserEmail, (state, action) => {
+    state.userEmail = action.payload;
+  })
+});
