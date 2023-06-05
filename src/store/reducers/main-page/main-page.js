@@ -1,5 +1,5 @@
-import {ActionType} from "../actions";
-import {SORT_MENU} from "../../const/const";
+import {ActionType} from "../../actions";
+import {SORT_MENU} from "../../../const/const";
 
 const initialState = {
   chosen_city: `Paris`,

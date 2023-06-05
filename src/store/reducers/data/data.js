@@ -1,4 +1,4 @@
-import {ActionType} from "../actions";
+import {ActionType} from "../../actions";
 
 const initialState = {
   loaded_offers: [],
@@ -6,7 +6,7 @@ const initialState = {
   loaded_comments: [],
   isCommentsLoaded: false,
   newComment: null,
-  commetsById: []
+  commentById: []
 };
 
 export default function (state = initialState, action) {
@@ -36,7 +36,7 @@ export default function (state = initialState, action) {
     case ActionType.LOAD_COMMENTS_BY_ID:
       return {
         ...state,
-        commetsById: action.payload
+        commentById: action.payload
       };
     default:
       return {

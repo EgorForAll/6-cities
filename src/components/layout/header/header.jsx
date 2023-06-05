@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import {Link} from "react-router-dom";
+import {getUserEmail} from "../../../store/reducers/authorization/selector";
 
 const Header = (props) => {;
   const {userEmail} = props;
@@ -31,8 +32,8 @@ const Header = (props) => {;
   );
 };
 
-const mapStateToProps = ({AUTHORIZATION}) => ({
-  userEmail: AUTHORIZATION.userEmail
+const mapStateToProps = (state) => ({
+  userEmail: getUserEmail(state)
 });
 
 export {Header};

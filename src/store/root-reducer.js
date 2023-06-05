@@ -1,11 +1,11 @@
 import {combineReducers} from "redux";
-import MainPageReducer from "./reducers/main-page";
-import RatingReducer from "./reducers/rating";
-import FavoritesReducer from "./reducers/favorites";
-import DataReducer from "./reducers/data";
-import AuthorizationReducer from "./reducers/authorization";
+import MainPageReducer from "./reducers/main-page/main-page";
+import RatingReducer from "./reducers/rating/rating";
+import FavoritesReducer from "./reducers/favorites/favorites";
+import DataReducer from "./reducers/data/data";
+import AuthorizationReducer from "./reducers/authorization/authorization";
 
-const nameSpace = {
+export const nameSpace = {
   MAIN: `MAIN`,
   RATING: `RATING`,
   FAVORITES: `FAVORITES`,

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {offersValid} from "/src/prop-types/offers";
 import { fetchHotelsList } from "../../../store/api-actions";
 import Spinner from "../../ui/spinner";
+import {checkOffersLoading, getOffers} from "../../../store/reducers/data/selector";
 
 const Main = ({offers, isDataLoaded, onLoadHotels}) => {
 
@@ -29,9 +30,9 @@ const Main = ({offers, isDataLoaded, onLoadHotels}) => {
 
 Main.propTypes = offersValid;
 
-const mapStateToProps = ({DATA}) => ({
-  offers: DATA.loaded_offers,
-  isDataLoaded: DATA.isOffersLoaded
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  isDataLoaded: checkOffersLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

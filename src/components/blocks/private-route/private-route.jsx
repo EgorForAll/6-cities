@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Route, Redirect} from "react-router-dom/cjs/react-router-dom.min";
 import {AuthorizationStatus, CLIENT_PATHES} from "../../../const/const";
+import {getAuthorization} from "../../../store/reducers/authorization/selector";
 import propTypes from "prop-types";
 
 const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
@@ -28,8 +29,8 @@ PrivateRoute.propTypes = {
   exact: propTypes.bool.isRequired
 };
 
-const mapStateToProps = ({AUTHORIZATION}) => ({
-  authorizationStatus: AUTHORIZATION.authorization_status,
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorization(state),
 });
 
 export {PrivateRoute};

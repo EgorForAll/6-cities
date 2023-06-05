@@ -9,6 +9,8 @@ import Map from "../map/map";
 import {SORT_MENU} from "../../../const/const";
 import {ActionCreator} from "../../../store/actions";
 import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
+import { checkOffersLoading, getOffers } from "../../../store/reducers/data/selector";
+import { checkSortMenuOpening, getChosenCity, getSortMEnuValue } from "../../../store/reducers/main-page/selector";
 
 const MainNoEmpty = (props) => {
   const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus, chosenCity} = props;
@@ -71,12 +73,12 @@ const MainNoEmpty = (props) => {
 
 MainNoEmpty.propTypes = offerValid;
 
-const mapStateToProps = ({DATA, MAIN}) => ({
-  chosenCity: MAIN.chosen_city,
-  offers: DATA.loaded_offers,
-  isOpenSortMenu: MAIN.sort_menu_open,
-  sortMenuValue: MAIN.sort_menu_value,
-  isDataLoaded: DATA.isDataLoaded,
+const mapStateToProps = (state) => ({
+  chosenCity: getChosenCity(state),
+  offers: getOffers(state),
+  isOpenSortMenu: checkSortMenuOpening(state),
+  sortMenuValue: getSortMEnuValue(state),
+  isDataLoaded: checkOffersLoading(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

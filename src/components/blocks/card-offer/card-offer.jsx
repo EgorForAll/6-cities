@@ -7,6 +7,7 @@ import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
 import {CARD_MODE} from "../../../const/const";
 import {ActionCreator} from "../../../store/actions";
+import { getFavorites } from "../../../store/reducers/favorites/selector";
 
 const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, favorites}) => {
 
@@ -55,8 +56,8 @@ const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, f
 
 CardOffer.propTypes = offerValid;
 
-const mapStateToProps = ({FAVORITES}) => ({
-  favorites: FAVORITES.favorites
+const mapStateToProps = (state) => ({
+  favorites: getFavorites(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

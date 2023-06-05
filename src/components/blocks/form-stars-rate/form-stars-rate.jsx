@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from "react";
 import StarRate from "../../ui/star-rate";
 import {connect} from "react-redux";
 import propTypes from "prop-types";
+import { getCurrentRate } from "../../../store/reducers/rating/selector";
 
 const FormStarsRate = ({rate}) => {
   const starsWrapperRef = useRef();
@@ -33,8 +34,8 @@ const FormStarsRate = ({rate}) => {
   );
 };
 
-const mapStateToProps = ({RATING}) => ({
-  rate: RATING.currentRate
+const mapStateToProps = (state) => ({
+  rate: getCurrentRate(state)
 });
 
 FormStarsRate.propTypes = {

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {LeafletParameters} from "../../../const/const";
 import "leaflet/dist/leaflet.css";
 import {offersValid} from "../../../prop-types/offers";
+import { getActivePoint, getMarkerImage } from "../../../store/reducers/main-page/selector";
 
 
 const Map = (props) => {
@@ -61,9 +62,9 @@ const Map = (props) => {
 
 Map.propTypes = offersValid;
 
-const mapStateToProps = ({MAIN}) => ({
-  marker: MAIN.markerImage,
-  activePoint: MAIN.active_point
+const mapStateToProps = (state) => ({
+  marker: getMarkerImage(state),
+  activePoint: getActivePoint(state)
 });
 
 export {Map};

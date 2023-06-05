@@ -15,6 +15,9 @@ import {postComment} from "../../../store/api-actions";
 import {useRef} from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
 import {ActionCreator} from "../../../store/actions";
+import {getAuthorization} from "../../../store/reducers/authorization/selector";
+import { checkCommentsLoading, getCommentById, getComments, getNewComment, getOffers } from "../../../store/reducers/data/selector";
+import { getCurrentRate } from "../../../store/reducers/rating/selector";
 
 const PropertyPage = (props) => {
   const {offers, comments, onLoadComments, onPostComment, rate, authorizationStatus, onResetRate, currentOfferComments} = props;
@@ -170,14 +173,14 @@ const PropertyPage = (props) => {
   );
 };
 
-const mapStateToProps = ({DATA, AUTHORIZATION, RATING}) => ({
-  offers: DATA.loaded_offers,
-  comments: DATA.loaded_comments,
-  isCommentsLoaded: DATA.isCommentsLoaded,
-  newComment: DATA.newComment,
-  rate: RATING.currentRate,
-  authorizationStatus: AUTHORIZATION.authorization_status,
-  currentOfferComments: DATA.commetsById
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  comments: getComments(state),
+  isCommentsLoaded: checkCommentsLoading(state),
+  newComment: getNewComment(state),
+  rate: getCurrentRate(state),
+  authorizationStatus: getAuthorization(state),
+  currentOfferComments: getCommentById(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
