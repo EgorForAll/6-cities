@@ -28,8 +28,8 @@ PrivateRoute.propTypes = {
   exact: propTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorization_status,
+const mapStateToProps = ({AUTHORIZATION}) => ({
+  authorizationStatus: AUTHORIZATION.authorization_status,
 });
 
 export {PrivateRoute};

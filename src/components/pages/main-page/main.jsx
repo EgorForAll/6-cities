@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import Header from "/src/components/layout/header/header";
 import MainNoEmpty from "/src/components/blocks/main-page-noempty/main-no-empty";
 import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import {offersValid} from "/src/prop-types/offers";
 import { fetchHotelsList } from "../../../store/api-actions";
 import Spinner from "../../ui/spinner";
@@ -29,9 +29,9 @@ const Main = ({offers, isDataLoaded, onLoadHotels}) => {
 
 Main.propTypes = offersValid;
 
-const mapStateToProps = (state) => ({
-  offers: state.loaded_offers,
-  isDataLoaded: state.isOffersLoaded
+const mapStateToProps = ({DATA}) => ({
+  offers: DATA.loaded_offers,
+  isDataLoaded: DATA.isOffersLoaded
 });
 
 const mapDispatchToProps = (dispatch) => ({

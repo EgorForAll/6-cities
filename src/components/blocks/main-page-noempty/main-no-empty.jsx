@@ -71,12 +71,12 @@ const MainNoEmpty = (props) => {
 
 MainNoEmpty.propTypes = offerValid;
 
-const mapStateToProps = (state) => ({
-  chosenCity: state.chosen_city,
-  offers: state.loaded_offers,
-  isOpenSortMenu: state.sort_menu_open,
-  sortMenuValue: state.sort_menu_value,
-  isDataLoaded: state.isDataLoaded,
+const mapStateToProps = ({DATA, MAIN}) => ({
+  chosenCity: MAIN.chosen_city,
+  offers: DATA.loaded_offers,
+  isOpenSortMenu: MAIN.sort_menu_open,
+  sortMenuValue: MAIN.sort_menu_value,
+  isDataLoaded: DATA.isDataLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

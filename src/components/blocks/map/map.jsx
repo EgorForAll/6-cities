@@ -61,9 +61,9 @@ const Map = (props) => {
 
 Map.propTypes = offersValid;
 
-const mapStateToProps = (state) => ({
-  marker: state.markerImage,
-  activePoint: state.active_point
+const mapStateToProps = ({MAIN}) => ({
+  marker: MAIN.markerImage,
+  activePoint: MAIN.active_point
 });
 
 export {Map};

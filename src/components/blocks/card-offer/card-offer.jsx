@@ -55,8 +55,8 @@ const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, f
 
 CardOffer.propTypes = offerValid;
 
-const mapStateToProps = (state) => ({
-  favorites: state.favorites
+const mapStateToProps = ({FAVORITES}) => ({
+  favorites: FAVORITES.favorites
 })
 
 const mapDispatchToProps = (dispatch) => ({

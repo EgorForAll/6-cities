@@ -31,8 +31,8 @@ const Header = (props) => {;
   );
 };
 
-const mapStateToProps = (state) => ({
-  userEmail: state.userEmail
+const mapStateToProps = ({AUTHORIZATION}) => ({
+  userEmail: AUTHORIZATION.userEmail
 });
 
 export {Header};

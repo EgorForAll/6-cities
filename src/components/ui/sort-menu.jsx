@@ -24,8 +24,8 @@ const SortMenu = (props) => {
 
 SortMenu.propTypes = propTypes.string.isRequired;
 
-const mapStateToProps = (state) => ({
-  sortMenuValue: state.sort_menu_value
+const mapStateToProps = ({MAIN}) => ({
+  sortMenuValue: MAIN.sort_menu_value
 });
 
 const mapDispatchToProps = (dispatch) => ({

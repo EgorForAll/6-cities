@@ -33,8 +33,8 @@ const FormStarsRate = ({rate}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  rate: state.currentRate
+const mapStateToProps = ({RATING}) => ({
+  rate: RATING.currentRate
 });
 
 FormStarsRate.propTypes = {

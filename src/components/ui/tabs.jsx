@@ -15,8 +15,8 @@ const Tabs = ({arrayOfCities, onToggleCity, chosenCity}) => {
 };
 
 
-const mapStateToProps = (state) => ({
-  chosenCity: state.chosen_city,
+const mapStateToProps = ({MAIN}) => ({
+  chosenCity: MAIN.chosen_city,
 });
 
 const mapDispatchToProps = (dispatch) => ({

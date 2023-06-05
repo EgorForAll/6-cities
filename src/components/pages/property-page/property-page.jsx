@@ -170,14 +170,14 @@ const PropertyPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  offers: state.loaded_offers,
-  comments: state.loaded_comments,
-  isCommentsLoaded: state.isCommentsLoaded,
-  newComment: state.newComment,
-  rate: state.currentRate,
-  authorizationStatus: state.authorization_status,
-  currentOfferComments: state.commetsById
+const mapStateToProps = ({DATA, AUTHORIZATION, RATING}) => ({
+  offers: DATA.loaded_offers,
+  comments: DATA.loaded_comments,
+  isCommentsLoaded: DATA.isCommentsLoaded,
+  newComment: DATA.newComment,
+  rate: RATING.currentRate,
+  authorizationStatus: AUTHORIZATION.authorization_status,
+  currentOfferComments: DATA.commetsById
 });
 
 const mapDispatchToProps = (dispatch) => ({
