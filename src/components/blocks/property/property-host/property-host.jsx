@@ -1,5 +1,5 @@
 import React from "react";
-import PropertyText from "../../ui/property-text";
+import PropertyText from "../../../ui/property-text";
 
 const PropertyHost = ({offer}) => {
   return (

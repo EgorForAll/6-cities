@@ -20,7 +20,7 @@ const FavoriteLocations = ({favorites, city}) => {
           {favorites.length ? favorites.map((item, index) => <CardFavorite offer={item} key={index}/>) :null}
         </div>
       </li> :
-          <h2 style={{position: `absolute`, margin: `auto`}}>You don't have saved offers</h2>}
+          null}
     </>
 
   );

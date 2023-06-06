@@ -2,11 +2,11 @@ import React, {useEffect, useRef} from "react";
 import Review from "../review/review";
 import FormStarsRate from "../form-stars-rate/form-stars-rate";
 import PropertyTextArea from "../property-textarea/property-textarea";
-import {AuthorizationStatus, CLIENT_PATHES} from "../../../const/const";
-import {fetchCommentsList, postComment} from "../../../store/api-actions";
-import {resetRating} from "../../../store/actions";
+import {AuthorizationStatus, CLIENT_PATHES} from "../../../../const/const";
+import {fetchCommentsList, postComment} from "../../../../store/api-actions";
+import {resetRating} from "../../../../store/actions";
 import {useDispatch, useSelector} from "react-redux";
-import {nameSpace} from "../../../store/root-reducer";
+import {nameSpace} from "../../../../store/root-reducer";
 
 const PropertyReview = ({offer}) => {
   const {comments, isCommentPosted} = useSelector((state) => state[nameSpace.DATA]);

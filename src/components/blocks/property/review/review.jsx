@@ -1,5 +1,5 @@
 import React from "react";
-import {countRating} from "../../../utils/utils";
+import {countRating} from "/src/utils/utils";
 import propTypes from "prop-types";
 
 const Review = ({review}) => {

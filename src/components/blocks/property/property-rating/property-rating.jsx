@@ -1,5 +1,5 @@
 import React from "react";
-import {countRating} from "../../../utils/utils";
+import {countRating} from "../../../../utils/utils";
 
 const PropertyRating = ({offer}) => {
   return (

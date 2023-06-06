@@ -1,5 +1,5 @@
 import React from "react";
-import FavoriteButton from "../../ui/favaorites-button";
+import FavoriteButton from "../../../ui/favaorites-button";
 
 const PropertyName = ({offer}) => {
   return (

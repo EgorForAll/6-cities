@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import Header from "/src/components/layout/header/header";
 import NearPlaces from "../../blocks/property/near-places/near-places";
-import PropertyHost from "../../blocks/property-host/property-host";
+import PropertyHost from "../../blocks/property/property-host/property-host";
 import PropertyFeatures from "../../blocks/property/property-features/property-features";
 import PropertyPrice from "../../blocks/property/property-price/property-price";
 import PropertyInside from "../../blocks/property/property-inside/property-inside";
-import PropertyRating from "../../blocks/property-rating/property-rating";
-import PropertyReview from "../../blocks/property-reviews/property-review";
-import PropertyName from "../../blocks/property-name/property-name";
+import PropertyRating from "../../blocks/property/property-rating/property-rating";
+import PropertyReview from "../../blocks/property/property-reviews/property-review";
+import PropertyName from "../../blocks/property/property-name/property-name";
 import PropertyMark from "../../blocks/property/property-mark/property-mark";
 import PropertyGallery from "../../blocks/property/propety-gallery/property-gallery";
 import Map from "../../blocks/map/map";
