@@ -1,5 +1,5 @@
 import React from "react";
-import {offerValid} from "../../../prop-types/offer";
+import {offerValid} from "../../../../prop-types/offer";
 
 const PropertyFeatures = ({offer}) => {
   return (

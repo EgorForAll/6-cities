@@ -1,6 +1,6 @@
 import React from "react";
-import CardOffer from "../card-offer/card-offer";
-import {CARD_MODE} from "../../../const/const";
+import CardOffer from "../../card-offer/card-offer";
+import {CARD_MODE} from "../../../../const/const";
 
 const NearPlaces = ({offers}) => {
 
