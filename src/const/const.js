@@ -37,5 +37,18 @@ export const CLIENT_PATHES = {
   PROPERTY_PAGE: `/offer/:id`
 };
 
+export const FAVORITES_BUTTON_PROPERTY = {
+  BUTTON_CLASS_NAME: `property__bookmark-button button`,
+  SVG_CLASS_NAME: `property__bookmark-icon`,
+  WIDTH: `31`,
+  HEIGHT: `33`
+};
+
+export const FAVORITES_BUTTON = {
+  BUTTON_CLASS_NAME: `place-card__bookmark-button button`,
+  SVG_CLASS_NAME: `place-card__bookmark-icon`,
+  WIDTH: `18`,
+  HEIGHT: `19`
+};
 
 export const CITIES_LIST = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseldorf`];

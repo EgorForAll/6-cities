@@ -5,7 +5,7 @@ import {addToFavorites} from "../../store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {nameSpace} from "../../store/root-reducer";
 import {AuthorizationStatus} from "../../const/const";
-import {CLIENT_PATHES} from "../../const/const";
+import {CLIENT_PATHES, FAVORITES_BUTTON_PROPERTY, FAVORITES_BUTTON} from "../../const/const";
 
 const FavoriteButton = ({offer}) => {
   const history = useHistory();
@@ -13,6 +13,8 @@ const FavoriteButton = ({offer}) => {
   const onAddToFavorites = (offer) => dispatch(addToFavorites(offer));
   const {favorites} = useSelector((state) => state[nameSpace.FAVORITES]);
   const {authorizationStatus} =useSelector((state) => state[nameSpace.AUTHORIZATIONS]);
+  const currentUrl = window.location.href;
+  const isPropertyPage = currentUrl.includes('offer')
 
   const addToFavoritesState = (offer) => {
     if (authorizationStatus !== AuthorizationStatus.AUTH) {
@@ -30,8 +32,8 @@ const FavoriteButton = ({offer}) => {
   };
 
   return (
-    <button className="place-card__bookmark-button button" type="button" onClick={() => addToFavoritesState(offer)}>
-      <BookmarkSvg offer={offer}/>
+    <button className={isPropertyPage ? FAVORITES_BUTTON_PROPERTY.BUTTON_CLASS_NAME : FAVORITES_BUTTON.BUTTON_CLASS_NAME} type="button" onClick={() => addToFavoritesState(offer)}>
+      <BookmarkSvg offer={offer} isPropertyPage={isPropertyPage}/>
     </button>
   );
 };
