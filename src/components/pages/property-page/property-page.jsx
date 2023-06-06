@@ -22,7 +22,7 @@ const PropertyPage = () => {
   const {offers} = useSelector((state) => state[nameSpace.DATA]);
   const currentOffer = findOffer(offers);
   const currentCity = currentOffer.city.name;
-  const nearOffersByCity = offers.filter((offer) => offer.city.name === currentCity);
+  const nearOffersByCity = offers.filter((offer) => offer.city.name === currentCity && offer !== currentOffer);
   const nearOffers = nearOffersByCity.slice(0, 3);
   return (
     <div className="page">
