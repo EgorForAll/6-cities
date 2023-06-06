@@ -2,11 +2,10 @@ import React, {useEffect, useRef} from "react";
 import StarRate from "../../ui/star-rate";
 import {connect} from "react-redux";
 import propTypes from "prop-types";
-import { getCurrentRate } from "../../../store/reducers/rating/selector";
+import {getCurrentRate} from "../../../store/reducers/rating/selector";
 
 const FormStarsRate = ({rate}) => {
   const starsWrapperRef = useRef();
-
   useEffect(() => {
     const svgNodeList = starsWrapperRef.current.querySelectorAll(`.htmlForm__star-image`);
     const svgArr = Array.prototype.slice.call(svgNodeList, 0);
