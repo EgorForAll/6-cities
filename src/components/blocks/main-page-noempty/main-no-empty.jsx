@@ -1,19 +1,22 @@
 import React from "react";
-import {connect} from "react-redux";
+import {nameSpace} from "../../../store/root-reducer";
 import CardOffer from "../card-offer/card-offer";
 import SortMenu from "../../ui/sort-menu";
 import {CITIES_LIST, CARD_MODE} from "/src/const/const";
 import {offerValid} from "/src/prop-types/offer";
 import Tabs from "/src/components/ui/tabs";
 import Map from "../map/map";
-import {SORT_MENU} from "../../../const/const";
+import {useSelector, useDispatch} from "react-redux";
 import {onChangeSortMenuStatus} from "../../../store/actions";
+import {SORT_MENU} from "../../../const/const";
 import {expensiveFirst, chipFirst, topRatedFirst} from "../../../utils/utils";
-import { checkOffersLoading, getOffers } from "../../../store/reducers/data/selector";
-import { checkSortMenuOpening, getChosenCity, getSortMEnuValue } from "../../../store/reducers/main-page/selector";
 
-const MainNoEmpty = (props) => {
-  const {offers, isOpenSortMenu, sortMenuValue, onChangeSortMenuStatus, chosenCity} = props;
+const MainNoEmpty = () => {
+  const {isSortMenuOpen, sortMenuValue, chosenCity} = useSelector((state) => state[nameSpace.MAIN]);
+  const {offers} = useSelector((state) => state[nameSpace.DATA]);
+  const dispatch = useDispatch();
+  const changeSortMenuStatus = () => dispatch(onChangeSortMenuStatus());
+
   const selectedCityHotels = offers.filter((offer) => offer.city.name === chosenCity);
 
   const toSortOffers = (sortType) => {
@@ -48,13 +51,13 @@ const MainNoEmpty = (props) => {
             <b className="places__found">{selectedCityHotels.length} places to stay in {chosenCity}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
-              <span style={{marginLeft: `5px`}} className="places__sorting-type" tabIndex="0" onClick={() => onChangeSortMenuStatus()}>
+              <span style={{marginLeft: `5px`}} className="places__sorting-type" tabIndex="0" onClick={() => changeSortMenuStatus()}>
                 {sortMenuValue}
                 <svg className="places__sorting-arrow" width="7" height="4">
                   <use xlinkHref="#icon-arrow-select"></use>
                 </svg>
               </span>
-              {isOpenSortMenu ? <SortMenu /> : null}
+              {isSortMenuOpen ? <SortMenu /> : null}
             </form>
             <div className="cities__places-list places__list tabs__content">
               {sortedOffers.map((item) => <CardOffer key={item.id} offer={item} mode={CARD_MODE.MAIN_PAGE}/>)}
@@ -73,21 +76,5 @@ const MainNoEmpty = (props) => {
 
 MainNoEmpty.propTypes = offerValid;
 
-const mapStateToProps = (state) => ({
-  chosenCity: getChosenCity(state),
-  offers: getOffers(state),
-  isOpenSortMenu: checkSortMenuOpening(state),
-  sortMenuValue: getSortMEnuValue(state),
-  isDataLoaded: checkOffersLoading(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onChangeSortMenuStatus() {
-    dispatch(onChangeSortMenuStatus());
-  }
-});
-
-export {MainNoEmpty};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainNoEmpty);
+export default MainNoEmpty;
 

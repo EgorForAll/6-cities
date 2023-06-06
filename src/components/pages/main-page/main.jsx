@@ -2,21 +2,24 @@ import React, {useEffect} from "react";
 import Header from "/src/components/layout/header/header";
 import MainNoEmpty from "/src/components/blocks/main-page-noempty/main-no-empty";
 import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
-import {connect} from "react-redux";
 import {offersValid} from "/src/prop-types/offers";
-import { fetchHotelsList } from "../../../store/api-actions";
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchHotelsList} from "../../../store/api-actions";
 import Spinner from "../../ui/spinner";
-import {checkOffersLoading, getOffers} from "../../../store/reducers/data/selector";
 
-const Main = ({offers, isDataLoaded, onLoadHotels}) => {
+const Main = () => {
+  const {offers, isOffersLoaded} = useSelector((state) => state.DATA);
+  const dispatch = useDispatch();
+
+  const onLoadHotels = () => dispatch(fetchHotelsList());
 
   useEffect(() => {
-    if (!isDataLoaded) {
+    if (!isOffersLoaded) {
       onLoadHotels();
     }
-  }, [isDataLoaded]);
+  }, [isOffersLoaded]);
 
-  if (!isDataLoaded) {
+  if (!isOffersLoaded) {
     return <Spinner />
   }
 
@@ -30,18 +33,5 @@ const Main = ({offers, isDataLoaded, onLoadHotels}) => {
 
 Main.propTypes = offersValid;
 
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  isDataLoaded: checkOffersLoading(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoadHotels() {
-    dispatch(fetchHotelsList())
-  }
-})
-
-export {Main};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
 

@@ -1,9 +1,11 @@
 import React from "react";
 import {onPutRating} from "../../store/actions";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 import propTypes from "prop-types";
 
-const StarRate = ({value, id, onPutRate}) => {
+const StarRate = ({value, id}) => {
+  const dispatch = useDispatch();
+  const onPutRate = (rate) => dispatch(onPutRating(rate));
 
   return (
     <>
@@ -19,18 +21,9 @@ const StarRate = ({value, id, onPutRate}) => {
 
 StarRate.propTypes = {
   value: propTypes.number.isRequired,
-  id: propTypes.number.isRequired,
-  onPutRate: propTypes.func.isRequired
+  id: propTypes.number.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onPutRate(rate) {
-    dispatch(onPutRating(rate));
-  }
-});
-
-export {StarRate};
-
-export default connect(null, mapDispatchToProps)(StarRate);
+export default StarRate;
 
 

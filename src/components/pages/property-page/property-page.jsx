@@ -9,18 +9,24 @@ import Review from "../../blocks/review/review";
 import PropertyGallery from "../../blocks/propety-gallery/property-gallery";
 import {AuthorizationStatus, CARD_MODE} from "../../../const/const";
 import Map from "../../blocks/map/map";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchCommentsList} from "../../../store/api-actions";
 import {postComment} from "../../../store/api-actions";
 import {useRef} from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
 import {resetRating} from "../../../store/actions";
-import {getAuthorization} from "../../../store/reducers/authorization/selector";
-import {checkCommentsLoading, getComments, getNewComment, getOffers, checkCommentPosted} from "../../../store/reducers/data/selector";
-import {getCurrentRate} from "../../../store/reducers/rating/selector";
+import {nameSpace} from "../../../store/root-reducer";
 
-const PropertyPage = (props) => {
-  const {offers, comments, onLoadComments, onPostComment, rate, authorizationStatus, onResetRate, isCommentPosted} = props;
+const PropertyPage = () => {
+  const {offers, comments, isCommentPosted} = useSelector((state) => state[nameSpace.DATA]);
+  const {currentRate} = useSelector((state) => state[nameSpace.RATING]);
+  const {authorizationStatus} = useSelector((state) => state[nameSpace.AUTHORIZATIONS]);
+
+  const dispatch = useDispatch();
+  const onLoadComments = (id) => dispatch(fetchCommentsList(id));
+  const onPostComment = (comment, rating, id) => dispatch(postComment({comment, rating}, id));
+  const onResetRate = () => dispatch(resetRating());
+
   const commentRef = useRef();
   const submitBtnRef = useRef();
   const history = useHistory();
@@ -30,7 +36,7 @@ const PropertyPage = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     authorizationStatus === AuthorizationStatus.AUTH ?
-      onPostComment(commentRef.current.value, rate, chosenOfferId)
+      onPostComment(commentRef.current.value, currentRate, chosenOfferId)
         : history.push(`/login`);
     commentRef.current.value = '';
     onResetRate();
@@ -166,28 +172,27 @@ const PropertyPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  comments: getComments(state),
-  isCommentsLoaded: checkCommentsLoading(state),
-  newComment: getNewComment(state),
-  rate: getCurrentRate(state),
-  authorizationStatus: getAuthorization(state),
-  isCommentPosted: checkCommentPosted(state)
-});
+// const mapStateToProps = (state) => ({
+//   offers: getOffers(state),
+//   comments: getComments(state),
+//   isCommentsLoaded: checkCommentsLoading(state),
+//   rate: getCurrentRate(state),
+//   authorizationStatus: getAuthorization(state),
+//   isCommentPosted: checkCommentPosted(state)
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-  onLoadComments(id) {
-    dispatch(fetchCommentsList(id))
-  },
-  onPostComment(comment, rating, id) {
-    dispatch(postComment({comment, rating}, id))
-  },
-  onResetRate(){
-    dispatch(resetRating())
-  }
-})
+// const mapDispatchToProps = (dispatch) => ({
+//   onLoadComments(id) {
+//     dispatch(fetchCommentsList(id))
+//   },
+//   onPostComment(comment, rating, id) {
+//     dispatch(postComment({comment, rating}, id))
+//   },
+//   onResetRate(){
+//     dispatch(resetRating())
+//   }
+// })
 
-export {PropertyPage}
+// export {PropertyPage}
 
-export default connect(mapStateToProps, mapDispatchToProps)(PropertyPage);
+export default PropertyPage;

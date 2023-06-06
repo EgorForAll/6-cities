@@ -1,6 +1,6 @@
 import {nameSpace} from "../../root-reducer";
 
-export const getOffers = (state) => state[nameSpace.DATA].loaded_offers;
+export const getOffers = (state) => state[nameSpace.DATA].offers;
 export const checkOffersLoading = (state) => state[nameSpace.DATA].isOffersLoaded;
 export const getComments = (state) => state[nameSpace.DATA].loaded_comments;
 export const checkCommentsLoading = (state) => state[nameSpace.DATA].isCommentsLoaded;

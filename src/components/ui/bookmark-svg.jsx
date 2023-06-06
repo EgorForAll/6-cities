@@ -3,10 +3,10 @@ import {offerValid} from "../../prop-types/offer";
 
 const BookmarkSvg = ({offer}) => {
   const [hover, setHover] = useState(false);
-  const isFavoriteStroke = `${offer.isFavorite || hover ? `#4481c3` : `#97979`}`;
-  const isFavoriteFill = `${offer.isFavorite || hover ? `#4481c3` : `#ffffff`}`;
+  const isFavoriteStroke = `${offer.is_favorite || hover ? `#4481c3` : `#97979`}`;
+  const isFavoriteFill = `${offer.is_favorite || hover ? `#4481c3` : `#ffffff`}`;
   const makeFavorite = () => {
-    offer = Object.assign(offer, {isFavorite: !offer.isFavorite});
+    offer = Object.assign(offer, {is_favorite: !offer.is_favorite});
   };
   return (
     <>

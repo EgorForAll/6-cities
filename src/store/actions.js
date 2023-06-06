@@ -68,11 +68,7 @@ export const onLoadComments = createAction(ActionType.LOAD_COMMENTS, (comments) 
   }
 });
 
-export const onPostComment = createAction(ActionType.POST_COMMENT, (comment) => {
-  return {
-    payload: comment
-  }
-});
+export const onPostComment = createAction(ActionType.POST_COMMENT);
 
 export const addComment = createAction(ActionType.ADD_A_COMMENT, (comment) => {
   return {

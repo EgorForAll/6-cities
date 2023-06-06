@@ -1,15 +1,20 @@
 import React from "react";
 import PremiumMark from "/src/components/ui/premium-mark";
 import BookmarkSvg from "/src/components/ui/bookmark-svg";
-import {connect} from "react-redux";
 import {offerValid} from "/src/prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
 import {countRating} from "/src/utils/utils";
 import {CARD_MODE} from "../../../const/const";
 import {toFocusCity, toUnfocusCity, addToFavorites} from "../../../store/actions";
-import {getFavorites} from "../../../store/reducers/favorites/selector";
+import {useSelector, useDispatch} from "react-redux";
+import {nameSpace} from "../../../store/root-reducer";
 
-const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, favorites}) => {
+const CardOffer = ({offer, mode}) => {
+  const {favorites} = useSelector((state) => state[nameSpace.FAVORITES]);
+  const dispatch = useDispatch();
+  const onAddToFavorites = (offer) => dispatch(addToFavorites(offer));
+  const onFocusCity = (point) => dispatch(toFocusCity(point));
+  const onUnfocusCity = () => dispatch(toUnfocusCity());
 
   const addToFavoritesState = (offer) => {
     const isInFavorites = favorites.find((item) => item.id === offer.id);
@@ -56,23 +61,4 @@ const CardOffer = ({offer, mode, onFocusCity, onUnfocusCity, onAddToFavorites, f
 
 CardOffer.propTypes = offerValid;
 
-const mapStateToProps = (state) => ({
-  favorites: getFavorites(state)
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  onFocusCity(point) {
-    dispatch(toFocusCity(point))
-  },
-  onUnfocusCity() {
-    dispatch(toUnfocusCity())
-  },
-  onAddToFavorites(offer) {
-    dispatch(addToFavorites(offer))
-  }
-});
-
-
-export  {CardOffer};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CardOffer)
+export default CardOffer;

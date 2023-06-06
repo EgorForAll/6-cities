@@ -1,14 +1,15 @@
 import React, {useEffect, useRef} from "react";
 import leaflet from "leaflet";
-import {connect} from "react-redux";
 import {LeafletParameters} from "../../../const/const";
 import "leaflet/dist/leaflet.css";
 import {offersValid} from "../../../prop-types/offers";
-import { getActivePoint, getMarkerImage } from "../../../store/reducers/main-page/selector";
+import {useSelector} from "react-redux";
+import {nameSpace} from "../../../store/root-reducer";
 
 
 const Map = (props) => {
-  const {points, activePoint} = props;
+  const {points} = props;
+  const {activePoint} = useSelector((state) => state[nameSpace.MAIN]);
   const mapRef = useRef();
   const city = points[0].city;
 
@@ -62,11 +63,4 @@ const Map = (props) => {
 
 Map.propTypes = offersValid;
 
-const mapStateToProps = (state) => ({
-  marker: getMarkerImage(state),
-  activePoint: getActivePoint(state)
-});
-
-export {Map};
-
-export default connect(mapStateToProps, null)(Map);
+export default Map;

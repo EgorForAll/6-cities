@@ -1,10 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {toToggleCity} from "../../store/actions";
-import {getChosenCity} from "../../store/reducers/main-page/selector";
+import {nameSpace} from "../../store/root-reducer";
 
-const Tabs = ({arrayOfCities, onToggleCity, chosenCity}) => {
+const Tabs = ({arrayOfCities}) => {
+  const {chosenCity} = useSelector((state) => state[nameSpace.MAIN]);
+  const dispatch = useDispatch();
+  const onToggleCity = (city) => dispatch(toToggleCity(city));
 
   return arrayOfCities.map((item) => (
     <li className="locations__item" key={arrayOfCities.indexOf(item)}>
@@ -15,19 +18,6 @@ const Tabs = ({arrayOfCities, onToggleCity, chosenCity}) => {
   ));
 };
 
-
-const mapStateToProps = (state) => ({
-  chosenCity: getChosenCity(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onToggleCity(city) {
-    dispatch(toToggleCity(city));
-  },
-});
-
-export {Tabs};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+export default Tabs;
 
 
