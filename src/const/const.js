@@ -6,8 +6,12 @@ export const SORT_MENU = {
 };
 
 export const CITIES = {
+  PARIS: `Paris`,
+  COLOGNE: `Cologne`,
+  BRUSSELS: `Brussels`,
   AMSTERDAM: `Amsterdam`,
-  COLOGNE: `Cologne`
+  HAMBURG: `Hamburg`,
+  DUSSELDORF: `Dusseldorf`
 };
 
 export const LeafletParameters = {

@@ -16,6 +16,7 @@ import {useRef} from "react";
 import FormStarsRate from "../../blocks/form-stars-rate/form-stars-rate";
 import {resetRating} from "../../../store/actions";
 import {nameSpace} from "../../../store/root-reducer";
+import {CLIENT_PATHES} from "../../../const/const";
 
 const PropertyPage = () => {
   const {offers, comments, isCommentPosted} = useSelector((state) => state[nameSpace.DATA]);
@@ -37,7 +38,7 @@ const PropertyPage = () => {
     evt.preventDefault();
     authorizationStatus === AuthorizationStatus.AUTH ?
       onPostComment(commentRef.current.value, currentRate, chosenOfferId)
-        : history.push(`/login`);
+        : history.push(CLIENT_PATHES.LOGIN);
     commentRef.current.value = '';
     onResetRate();
   };

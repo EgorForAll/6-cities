@@ -20,7 +20,6 @@ export const topRatedFirst = (a, b) => {
 };
 
 // Поиск выбранного оффера в массиве данных
-
 export const findOffer = (offers) => {
   const currentLocation = window.location.pathname;
   const chosenOffer = offers.find((item) => item.id === Number(currentLocation.substring(7)));
