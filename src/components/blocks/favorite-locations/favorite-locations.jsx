@@ -11,7 +11,7 @@ const FavoriteLocations = ({favorites, city}) => {
       <li className="favorites__locations-items">
         <div className="favorites__locations locations locations--current">
           <div className="locations__item">
-            <Link className="locations__item-link" href={CLIENT_PATHES.MAIN}>
+            <Link className="locations__item-link" to={CLIENT_PATHES.MAIN}>
               <span>{city}</span>
             </Link>
           </div>

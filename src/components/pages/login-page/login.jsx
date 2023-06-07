@@ -2,8 +2,8 @@ import React from "react";
 import {useRef} from "react";
 import {login} from "../../../store/api-actions";
 import {connect} from "react-redux";
-import {CLIENT_PATHES} from "../../../const/const";
-import {useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom"
+import { CLIENT_PATHES } from "../../../const/const";
 
 const Login = ({onSubmit}) => {
   const emailRef = useRef();
@@ -12,11 +12,11 @@ const Login = ({onSubmit}) => {
 
   const onSubmitAuthor = (evt) => {
     evt.preventDefault();
+    history.push(CLIENT_PATHES.FAVORITES);
     onSubmit({
       login: emailRef.current.value,
       password: passwordRef.current.value
     });
-    history.push(CLIENT_PATHES.FAVORITES);
   }
   return (
     <div className="page page--gray page--login">
