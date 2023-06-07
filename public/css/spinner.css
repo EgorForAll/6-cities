@@ -3,8 +3,8 @@
   position: absolute;
 	width: 8em;
 	height: 8em;
-  left:  50%;
-  top: 50%;
+  left: 45%;
+  top: 40%;
 }
 .sp__ring {
 	stroke: hsla(var(--hue),90%,5%,0.1);

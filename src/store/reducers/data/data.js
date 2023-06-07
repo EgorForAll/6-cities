@@ -1,12 +1,13 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {onLoadComments, onLoadHotels, onPostComment, addComment} from "../../actions";
+import {onLoadComments, onLoadHotels, onPostComment, addComment, handleError} from "../../actions";
 
 const initialState = {
   offers: [],
   isOffersLoaded: false,
   comments: [],
   isCommentsLoaded: false,
-  isCommentPosted: false
+  isCommentPosted: false,
+  errorCode: null
 };
 
 export const DataReducer = createReducer(initialState, (builder) => {
@@ -25,4 +26,7 @@ export const DataReducer = createReducer(initialState, (builder) => {
   builder.addCase(addComment, (state, action) => {
     state.comments = action.payload;
   });
+  builder.addCase(handleError, (state, action) => {
+    state.errorCode = action.payload;
+  })
 });

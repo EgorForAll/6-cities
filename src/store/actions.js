@@ -13,12 +13,12 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `redirectToRoute`,
   LOAD_FAVORITES: 'data/loadFavorites',
   ADD_REMOVE_FAVORITES: `data/add or remove favorites`,
-  MAKE_OR_DELETE_FAVORITE: 'data/make or delete favorite',
   POST_COMMENT: `post comment`,
   ADD_A_COMMENT: `add a comment`,
   PUT_A_RATING: `put a rating`,
   RESET_A_RATING: `reset a rating`,
-  LOAD_COMMENTS_BY_ID: `load comments by id`
+  LOAD_COMMENTS_BY_ID: `load comments by id`,
+  HANDLE_ERROR: `handle error`
 };
 
 // Взаимодействие с компонентами на главной странице
@@ -74,6 +74,12 @@ export const onPostComment = createAction(ActionType.POST_COMMENT);
 export const addComment = createAction(ActionType.ADD_A_COMMENT, (comment) => {
   return {
     payload: comment
+  }
+});
+
+export const handleError = createAction(ActionType.HANDLE_ERROR, (err) => {
+  return {
+    payload: err
   }
 });
 

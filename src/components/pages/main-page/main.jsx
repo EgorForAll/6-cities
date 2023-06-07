@@ -10,7 +10,7 @@ import {nameSpace} from "../../../store/root-reducer";
 
 const Main = () => {
 
-  const {offers, isOffersLoaded} = useSelector((state) => state[nameSpace.DATA]);
+  const {offers, isOffersLoaded, errorCode} = useSelector((state) => state[nameSpace.DATA]);
   const {isPosted} = useSelector((state) => state[nameSpace.FAVORITES]);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Main = () => {
     onLoadHotels();
   }, [isOffersLoaded, isPosted]);
 
-  if (!isOffersLoaded) {
+  if (!isOffersLoaded && errorCode != 404) {
     return <Spinner />
   }
 

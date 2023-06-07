@@ -1,14 +1,16 @@
 import {AuthorizationStatus, CLIENT_PATHES} from "../const/const";
-import {onLoadHotels, onLoadComments, requireAuthorization, addUserEmail, redirectToRoute, onPostComment, loadFavoritesList, addRemoveFavorites} from "./actions";
+import {onLoadHotels, onLoadComments, requireAuthorization, addUserEmail, redirectToRoute, onPostComment, loadFavoritesList, addRemoveFavorites, handleError} from "./actions";
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
     .then(({data}) => dispatch(onLoadHotels(data)))
+    .catch((err) => dispatch(handleError(err.response.status)))
 );
 
 export const fetchCommentsList = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(onLoadComments(data)))
+    .catch((err) => dispatch(handleError(err.response.status)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

@@ -1,42 +1,18 @@
 import React from "react";
+import Tabs from "../../ui/tabs";
+import {CITIES_LIST} from "../../../const/const";
+import {useSelector} from "react-redux";
+import {nameSpace} from "../../../store/root-reducer";
 
 const MainEmpty = () => {
+  const {chosenCity} = useSelector((state) => state[nameSpace.MAIN]);
   return (
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
           <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
+            {CITIES_LIST.length > 0 ? <Tabs arrayOfCities={CITIES_LIST}/> : null}
           </ul>
         </section>
       </div>
@@ -45,7 +21,7 @@ const MainEmpty = () => {
           <section className="cities__no-places">
             <div className="cities__status-wrapper tabs__content">
               <b className="cities__status">No places to stay available</b>
-              <p className="cities__status-description">We could not find any property available at the moment in Dusseldorf</p>
+              <p className="cities__status-description">We could not find any property available at the moment in {chosenCity}</p>
             </div>
           </section>
           <div className="cities__right-section"></div>
