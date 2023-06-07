@@ -6,18 +6,19 @@ import {offersValid} from "/src/prop-types/offers";
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchHotelsList} from "../../../store/api-actions";
 import Spinner from "../../ui/spinner";
+import {nameSpace} from "../../../store/root-reducer";
 
 const Main = () => {
-  const {offers, isOffersLoaded} = useSelector((state) => state.DATA);
+
+  const {offers, isOffersLoaded} = useSelector((state) => state[nameSpace.DATA]);
+  const {isPosted} = useSelector((state) => state[nameSpace.FAVORITES]);
   const dispatch = useDispatch();
 
   const onLoadHotels = () => dispatch(fetchHotelsList());
 
   useEffect(() => {
-    if (!isOffersLoaded) {
-      onLoadHotels();
-    }
-  }, [isOffersLoaded]);
+    onLoadHotels();
+  }, [isOffersLoaded, isPosted]);
 
   if (!isOffersLoaded) {
     return <Spinner />

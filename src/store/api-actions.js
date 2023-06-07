@@ -1,5 +1,5 @@
 import {AuthorizationStatus, CLIENT_PATHES} from "../const/const";
-import {onLoadHotels, onLoadComments, requireAuthorization, addUserEmail, redirectToRoute, onPostComment, addToFavorites} from "./actions";
+import {onLoadHotels, onLoadComments, requireAuthorization, addUserEmail, redirectToRoute, onPostComment, loadFavoritesList, addRemoveFavorites} from "./actions";
 
 export const fetchHotelsList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
@@ -32,5 +32,10 @@ export const postComment = ({comment, rating}, id) => (dispatch, _getState, api)
 
 export const fetchFavoritesList = () => (dispatch, _getState, api) => (
   api.get(`/favorite`)
-    .then(({data}) => dispatch(addToFavorites(data)))
+    .then(({data}) => dispatch(loadFavoritesList(data)))
 );
+
+export const postFavorite = (id, stat) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${stat}`)
+    .then(() => dispatch((addRemoveFavorites())))
+)

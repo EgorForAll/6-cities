@@ -11,8 +11,9 @@ export const ActionType = {
   LOAD_HOTELS: `data/loadHotels`,
   LOAD_COMMENTS: `data/loadComments`,
   REDIRECT_TO_ROUTE: `redirectToRoute`,
-  ADD_TO_FAVORITES: `add to favorites`,
-  DELETE_FROM_FAVORITES: `delete from favorites`,
+  LOAD_FAVORITES: 'data/loadFavorites',
+  ADD_REMOVE_FAVORITES: `data/add or remove favorites`,
+  MAKE_OR_DELETE_FAVORITE: 'data/make or delete favorite',
   POST_COMMENT: `post comment`,
   ADD_A_COMMENT: `add a comment`,
   PUT_A_RATING: `put a rating`,
@@ -84,11 +85,13 @@ export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) 
 });
 
 // Работа с избранным
-export const addToFavorites = createAction(ActionType.ADD_TO_FAVORITES, (offers) => {
+export const loadFavoritesList = createAction(ActionType.LOAD_FAVORITES, (offers) => {
   return {
     payload: offers
   }
 });
+
+export const addRemoveFavorites = createAction(ActionType.ADD_REMOVE_FAVORITES);
 
 // Рейтинг
 export const onPutRating = createAction(ActionType.PUT_A_RATING, (rate) => {
