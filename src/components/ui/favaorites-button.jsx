@@ -13,7 +13,8 @@ const FavoriteButton = ({offer}) => {
   const {authorizationStatus} = useSelector((state) => state[nameSpace.AUTHORIZATIONS]);
   const makeOfferFavorite = (id, status) => dispatch(postFavorite(id, status));
   const currentUrl = window.location.href;
-  const isPropertyPage = currentUrl.includes('offer')
+  const isPropertyPage = currentUrl.includes('offer');
+  const buttonClassName = (checking) => checking ? FAVORITES_BUTTON_PROPERTY.BUTTON_CLASS_NAME : FAVORITES_BUTTON.BUTTON_CLASS_NAME;
 
   const addToFavoritesState = (offer) => {
     if (authorizationStatus === AuthorizationStatus.AUTH) {
@@ -26,7 +27,7 @@ const FavoriteButton = ({offer}) => {
   }
 
   return (
-    <button className={isPropertyPage ? FAVORITES_BUTTON_PROPERTY.BUTTON_CLASS_NAME : FAVORITES_BUTTON.BUTTON_CLASS_NAME} type="button" onClick={() => addToFavoritesState(offer)}>
+    <button className={buttonClassName(isPropertyPage)} type="button" onClick={() => addToFavoritesState(offer)}>
       <BookmarkSvg offer={offer} isPropertyPage={isPropertyPage}/>
     </button>
   );
