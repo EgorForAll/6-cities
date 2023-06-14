@@ -24,7 +24,7 @@ export const login = ({login: email, password}) => (dispatch, _getState, api) =>
   api.post(`/login`, {email, password})
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(addUserEmail(email)))
-    .then(() => dispatch(redirectToRoute(CLIENT_PATHES.FAVORITES)))
+    .then(() => dispatch(redirectToRoute(CLIENT_PATHES.MAIN)))
 );
 
 export const postComment = ({comment, rating}, id) => (dispatch, _getState, api) => (

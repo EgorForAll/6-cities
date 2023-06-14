@@ -7,11 +7,13 @@ import {fetchCommentsList, postComment} from "../../../../store/api-actions";
 import {resetRating} from "../../../../store/actions";
 import {useDispatch, useSelector} from "react-redux";
 import {nameSpace} from "../../../../store/root-reducer";
+import { seHistory, useHistory} from "react-router-dom/cjs/react-router-dom.min";
 
 const PropertyReview = ({offer}) => {
   const {comments, isCommentPosted, errorCode} = useSelector((state) => state[nameSpace.DATA]);
   const {authorizationStatus} = useSelector((state) => state[nameSpace.AUTHORIZATIONS]);
   const {currentRate} = useSelector((state) => state[nameSpace.RATING]);
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const onPostComment = (comment, rating, id) => dispatch(postComment({comment, rating}, id));
