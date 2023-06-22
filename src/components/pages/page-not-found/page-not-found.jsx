@@ -9,7 +9,7 @@ const PageNotFound = () => {
         <br />
         <small>Page not found</small>
       </h1>
-      <Link to="/" style={{color: `blue`}}>Go to main page</Link>
+      <Link to="/" style={{color: `blue`}}>Вернуться на главную</Link>
     </>
   );
 };

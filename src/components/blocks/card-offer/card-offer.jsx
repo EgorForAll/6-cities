@@ -1,9 +1,9 @@
 import React from "react";
-import PremiumMark from "/src/components/ui/premium-mark";
+import PremiumMark from "../../ui/premium-mark";
 import FavoriteButton from "../../ui/favaorites-button";
-import {offerValid} from "/src/prop-types/offer";
+import {offerValid} from "../../../prop-types/offer";
 import {Link} from "react-router-dom/cjs/react-router-dom.min";
-import {countRating} from "/src/utils/utils";
+import {countRating} from "../../../utils/utils";
 import {CARD_MODE} from "../../../const/const";
 import {toFocusCity, toUnfocusCity} from "../../../store/actions";
 import {useDispatch} from "react-redux";

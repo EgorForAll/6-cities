@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import Header from "/src/components/layout/header/header";
-import MainNoEmpty from "/src/components/blocks/main-page-noempty/main-no-empty";
-import MainEmpty from "/src/components/blocks/main-page-empty/main-empty";
-import {offersValid} from "/src/prop-types/offers";
+import Header from "../../layout/header/header";
+import MainNoEmpty from "../../blocks/main-page-noempty/main-no-empty";
+import MainEmpty from "../../blocks/main-page-empty/main-empty";
+import {offersValid} from "../../../prop-types/offers";
 import {useSelector, useDispatch} from 'react-redux';
 import {fetchHotelsList} from "../../../store/api-actions";
 import Spinner from "../../ui/spinner";

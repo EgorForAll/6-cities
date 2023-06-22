@@ -66,7 +66,7 @@ export const OFFER_TEST = {
     is_favorite: false,
     is_premiun: true,
     rating: 2.1,
-    type: house,
+    type: 'house',
     bedrooms: 5,
     max_adults: 8,
     price: 389,

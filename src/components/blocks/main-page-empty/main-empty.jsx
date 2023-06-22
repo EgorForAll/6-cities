@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../../ui/tabs";
+import Tabs from "../../ui/tabs/tabs";
 import {CITIES_LIST} from "../../../const/const";
 import {useSelector} from "react-redux";
 import {nameSpace} from "../../../store/root-reducer";
