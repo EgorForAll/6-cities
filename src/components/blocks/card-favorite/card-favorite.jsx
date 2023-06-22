@@ -1,11 +1,9 @@
 import React from "react";
-import BookmarkSvg from "/src/components/ui/bookmark-svg";
 import {offersValid} from "/src/prop-types/offers";
 import {countRating} from "/src/utils/utils";
 import FavoriteButton from "../../ui/favaorites-button";
 
 const CardFavorite = ({offer}) => {
-
 
   return (
     <article className="favorites__card place-card" key={offer.id}>
