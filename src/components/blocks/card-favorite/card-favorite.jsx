@@ -1,6 +1,6 @@
 import React from "react";
-import {offersValid} from "/src/prop-types/offers";
-import {countRating} from "/src/utils/utils";
+import {offersValid} from "../../../prop-types/offers";
+import {countRating} from "../../../utils/utils";
 import FavoriteButton from "../../ui/favaorites-button";
 
 const CardFavorite = ({offer}) => {

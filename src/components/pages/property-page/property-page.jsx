@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Header from "/src/components/layout/header/header";
+import Header from "../../layout/header/header";
 import NearPlaces from "../../blocks/property/near-places/near-places";
 import PropertyHost from "../../blocks/property/property-host/property-host";
 import PropertyFeatures from "../../blocks/property/property-features/property-features";

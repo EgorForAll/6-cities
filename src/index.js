@@ -4,8 +4,7 @@ import App from './components/app/app';
 import {configureStore} from '@reduxjs/toolkit';
 import {createAPI} from './api/api';
 import {Provider} from 'react-redux';
-import browserHistory from './browser-history';
-import {Router as BrowserRouter} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom/cjs/react-router-dom';
 import {AuthorizationStatus} from './const/const';
 import rootReducer from './store/root-reducer';
 import {checkAuth} from './store/api-actions';
@@ -30,7 +29,9 @@ store.dispatch(checkAuth());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>,
     document.querySelector(`#root`)
 );

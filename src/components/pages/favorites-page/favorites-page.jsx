@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Header from "/src/components/layout/header/header";
+import Header from "../../layout/header/header";
 import Footer from "../../layout/footer/footer";
 import FavoriteList from "../../blocks/favorite-list/favorite-list";
 import {useDispatch, useSelector} from "react-redux";
